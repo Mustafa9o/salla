@@ -591,12 +591,13 @@
     function renderProducts() {
       const grid = document.getElementById('products-grid');
       const filtered = activeCat === 'all_categories' ? allProducts : allProducts.filter(p => p.cat === activeCat);
+      const assetBase = "{{ 'images/logo.png' | asset }}".replace('logo.png', '');
       grid.innerHTML = filtered.map(p => {
         const t = p.key ? i18n[currentLang][p.key] : (currentLang==='ar'?p.title_ar:p.title_en);
         return `<div><a href="product.html?id=${p.id}" class="block hover:scale-105 transition-transform duration-300">
           <div class="relative w-full h-[250px] sm:h-[300px] mb-3.5 bg-gray-50 rounded-xl overflow-hidden">
-            <img class="w-full h-full object-cover" src="{{ 'images/${p.image}' | asset }}">
-            ${p.overlay ? `<img class="absolute object-cover ${p.overlayClass}" src="{{ 'images/${p.overlay}' | asset }}">` : ''}
+            <img class="w-full h-full object-cover" src="${assetBase}${p.image}">
+            ${p.overlay ? `<img class="absolute object-cover ${p.overlayClass}" src="${assetBase}${p.overlay}">` : ''}
             ${p.discount ? `<span class="absolute top-[30px] rtl:right-1/2 ltr:left-1/2 rtl:translate-x-1/2 ltr:-translate-x-1/2 bg-[#f9edbd] text-[#3b2f2f] px-2 py-1 text-xs rounded font-bold">-30%</span>` : ''}
           </div>
           <h3 class="font-quicksand font-bold text-[#3b2f2f] text-[20px] sm:text-[22px] text-center mb-1">${t}</h3>
