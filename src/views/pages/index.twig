@@ -540,13 +540,14 @@
       const list = document.getElementById('cart-items-list');
       const empty = document.getElementById('cart-empty-msg');
       const footer = document.getElementById('cart-footer');
+      const assetBase = "{{ 'images/logo.png' | asset }}".replace('logo.png', '');
       if (cart.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); footer.classList.add('hidden'); }
       else {
         empty.classList.add('hidden'); footer.classList.remove('hidden');
         list.innerHTML = cart.map(item => `
           <li class="flex justify-between items-start gap-3 border-b pb-3 border-gray-100">
             <div class="flex gap-3 w-[65%]">
-              <img src="{{ 'images/${item.image}' | asset }}" class="w-12 h-12 object-cover rounded-md border">
+              <img src="${assetBase}${item.image}" class="w-12 h-12 object-cover rounded-md border">
               <div class="flex-1">
                 <p class="font-bold text-sm leading-tight font-quicksand">${item.title}</p>
                 <p class="text-gray-500 text-xs font-quicksand font-bold">${i18n[currentLang].qty} ${item.quantity}</p>
