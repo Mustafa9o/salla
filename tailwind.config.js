@@ -24,6 +24,10 @@ module.exports = {
             primary: "var(--font-main)"
         },
         extend    : {
+            fontFamily: {
+              cormorant: ['"Cormorant Infant"', 'Helvetica', 'serif'],
+              quicksand: ['Quicksand', '"Cairo"', 'Helvetica', 'sans-serif'],
+            },
             transitionTimingFunction: {
               'elastic': 'cubic-bezier(0.55, 0, 0.1, 1)',
             },
@@ -124,10 +128,19 @@ module.exports = {
                     '0%': { transform: 'translateY(0%)', opacity: '1' },
                     '100%': { transform: 'translateY(100%)', opacity: '0' },
                 },
+                scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+                scrollrtl: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(50%)' } },
+                fadeOut: { to: { opacity: '0', visibility: 'hidden' } },
+                slideInSide: { from: { transform: 'translateX(100%)' }, to: { transform: 'translateX(0)' } },
+                slideInSideRtl: { from: { transform: 'translateX(-100%)' }, to: { transform: 'translateX(0)' } },
             },
             animation: {
                 slideUpFromBottom: 'slideUpFromBottom .6s linear',
                 slideDownFromBottom: 'slideDownFromBottom .6s linear',
+                'scroll': 'scroll 25s linear infinite',
+                'scroll-rtl': 'scrollrtl 25s linear infinite',
+                'slide-side': 'slideInSide 0.3s ease-out',
+                'slide-side-rtl': 'slideInSideRtl 0.3s ease-out',
             },
         },
     },

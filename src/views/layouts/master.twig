@@ -107,11 +107,15 @@
 </noscript>
 <div class="app-inner flex flex-col min-h-full">
     {% hook 'body:start' %}
-    {% component 'header.header' %}
+    {% if not is_page('index') %}
+        {% component 'header.header' %}
+    {% endif %}
     <main id="main-content" role="main"{{ (page.slug == 'product.single' or page.slug starts with 'product.index') ? ' class="flex flex-col space-y-8 sm:space-y-16"' : '' }}>
     {% block content %}{% endblock %}
     </main>
-    {% component 'footer.footer' %}
+    {% if not is_page('index') %}
+        {% component 'footer.footer' %}
+    {% endif %}
 </div>
 {% hook 'body:end' %}
 {% if theme.settings.get('enable_add_product_toast', true) %}
