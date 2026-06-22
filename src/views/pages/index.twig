@@ -1,14 +1,562 @@
-{#
-| Variable         | Type       | Description                                                         |
-|------------------|------------|---------------------------------------------------------------------|
-| page             | object     |                                                                     |
-| page.title       | string     | *could be html                                                      |
-| page.slug        | string     | ex: "cat.show"                                                      |
-#}
 {% extends "layouts.master" %}
 {% block content %}
-    {% component home %}
-{% endblock %}
-{% block scripts %}
-    <script defer src="{{ 'home.js' | asset }}"></script>
+
+
+  <!-- INTRO -->
+  <div class="intro-container">
+    <img src="{{ 'images/intro.gif' | asset }}" alt="Loading..." class="intro-gif">
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content" id="main-content">
+
+    <!-- HERO SECTION -->
+    <section class="relative w-full bg-white overflow-hidden min-h-[90vh] sm:min-h-[95vh] lg:min-h-screen flex flex-col justify-between">
+
+      <!-- NAVBAR -->
+      <div class="absolute top-0 left-0 w-full px-4 sm:px-6 md:px-10 py-4 sm:py-6 flex items-center justify-between z-20">
+        <a href="index.html">
+          <img src="{{ 'images/logo.png' | asset }}" alt="Ratio Coffee Logo" class="w-[80px] sm:w-[100px] md:w-[120px]">
+        </a>
+        <div class="flex items-center gap-3 sm:gap-5">
+          <!-- Language Toggle -->
+          <button onclick="toggleLanguage()" id="lang-toggle" class="text-[#004876] hover:text-[#6f4336] font-quicksand font-bold text-lg px-2">
+            EN
+          </button>
+          
+          <!-- Cart -->
+          <button class="relative text-[#004876] hover:text-[#6f4336] transition-colors" id="cart-open-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            <span id="cart-badge" class="absolute -top-2 -right-2 bg-[#6f4336] text-white text-xs w-5 h-5 hidden items-center justify-center rounded-full">0</span>
+          </button>
+          
+          <!-- Menu -->
+          <button class="text-[#004876] hover:text-[#6f4336] transition-colors" id="menu-open-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 sm:w-7 sm:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO CONTENT -->
+      <div class="container mx-auto px-4 sm:px-6 md:px-10 mt-[90px] sm:mt-[120px] md:mt-[140px] lg:mt-[8vw] relative z-10 flex-1 flex items-center">
+        <div class="w-full">
+          <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">
+
+            <!-- LEFT: Product image + CTA -->
+            <div class="relative flex flex-col items-center justify-center w-full lg:w-1/3 order-1">
+              <div class="relative w-full max-w-[240px] xs:max-w-[260px] sm:max-w-[350px] md:max-w-[400px] h-auto flex items-center justify-center">
+                <img src="{{ 'images/r2.jpg' | asset }}" alt="Coffee Bag" class="w-full h-full object-contain">
+              </div>
+              <div class="mt-4 text-center px-4 w-full lg:absolute lg:bottom-4 xl:bottom-8 rtl:lg:right-1/2 ltr:lg:left-1/2 rtl:lg:translate-x-1/2 ltr:lg:-translate-x-1/2">
+                <p class="font-normal text-[#292625] text-base sm:text-lg mb-4 font-quicksand max-w-[300px] mx-auto" data-i18n="hero_subtitle"></p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+                  <button class="h-auto flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl border border-[#6f4336] bg-transparent hover:bg-[#6f4336]/10 transition-colors">
+                    <span class="font-medium text-[#6f4336] text-sm sm:text-base font-quicksand" data-i18n="shop_cta"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#6f4336] rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+                  </button>
+                  <img class="w-[40px] h-[40px] sm:w-[46px] sm:h-[46px]" alt="Group" src="{{ 'images/group1000010764.png' | asset }}">
+                </div>
+              </div>
+            </div>
+
+            <!-- MIDDLE: Discount Section (Made responsive!) -->
+            <div class="w-full lg:w-1/3 flex justify-center order-2">
+              <section class="relative w-full flex justify-center items-start overflow-hidden lg:overflow-visible">
+                <!-- Wrapper that scales down on smaller screens -->
+                <div class="relative w-[506px] h-[653px] transform scale-[0.65] sm:scale-75 md:scale-90 lg:scale-100 origin-top">
+                  <div class="absolute top-[102px] left-[26px] w-[443px] h-[529px]">
+                    <div class="absolute top-0 left-0 w-[437px] h-[476px] bg-[#07578b] backdrop-blur-[109.5px] border-0 rounded-lg">
+                      <div class="p-0 relative w-full h-full">
+                        <img class="absolute top-[366px] left-[51px] w-[346px] h-40" alt="Frame" src="{{ 'images/frame48095594.svg' | asset }}">
+                      </div>
+                    </div>
+                    <!-- Color variants -->
+                    <div class="absolute top-[503px] left-20 flex gap-[59px] items-center">
+                      <button class="h-auto p-0 flex flex-col items-center gap-1">
+                        <img class="w-[58px] h-[26px]" alt="Dark color option" src="{{ 'images/group1000010776-2.png' | asset }}">
+                        <span class="font-cormorant font-bold text-white text-[15px] tracking-[0] leading-[normal] whitespace-nowrap" data-i18n="color_dark"></span>
+                      </button>
+                      <button class="h-auto p-0 flex flex-col items-center gap-1">
+                        <img class="w-[58px] h-[26px]" alt="brown color option" src="{{ 'images/group1000010774-2.png' | asset }}">
+                        <span class="font-cormorant font-bold text-white text-[15px] tracking-[0] leading-[normal] whitespace-nowrap" data-i18n="color_brown"></span>
+                      </button>
+                      <button class="h-auto p-0 flex flex-col items-center gap-1">
+                        <img class="w-[58px] h-[26px]" alt="Beige color option" src="{{ 'images/subtract-4.svg' | asset }}">
+                        <span class="font-cormorant font-bold text-white text-[15px] tracking-[0] leading-[normal] whitespace-nowrap" data-i18n="color_beige"></span>
+                      </button>
+                    </div>
+                  </div>
+                  <!-- Coffee bag -->
+                  <img class="absolute top-0 left-0 w-[506px] h-[653px]" alt="Bananers brown" src="{{ 'images/bananers-3d-brown-paper-coffee-bean-bag-transparent-background-e.png' | asset }}">
+                  <img class="absolute top-52 left-[267px] w-[117px] h-[139px]" alt="Group" src="{{ 'images/group1000010765.png' | asset }}">
+                </div>
+              </section>
+            </div>
+
+            <!-- RIGHT: Cup image + text -->
+            <div class="w-full lg:w-1/3 flex flex-col items-center text-center order-3 mt-[-60px] lg:mt-0">
+              <div class="w-full max-w-[200px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[350px] h-auto flex items-center justify-center">
+                <img src="{{ 'images/bk1.png' | asset }}" alt="Coffee Illustration" class="w-full h-full object-contain">
+              </div>
+              <div class="mt-4 lg:mt-6 font-normal text-[24px] sm:text-[28px] md:text-[32px] leading-[32px]">
+                <span class="font-bold text-[#231f20] font-quicksand" data-i18n="hero_title"></span>
+                <span class="font-bold text-white bg-[#004876] px-2 py-1 rounded-md font-quicksand inline-block mt-2 sm:mt-0" data-i18n="hero_pro"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCROLLING MARQUEE -->
+    <div class="relative w-full overflow-hidden py-8 bg-white" dir="ltr">
+      <div class="marquee-inner flex items-center gap-8 sm:gap-12">
+        <span class="font-cormorant font-bold text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-1.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-2.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-3.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-4.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-5.png' | asset }}">
+        <!-- Replicated for loop -->
+        <span class="font-cormorant font-bold text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-1.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-2.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-3.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-4.png' | asset }}">
+        <span class="font-quicksand font-normal text-[#6f4336] text-xl sm:text-2xl mx-4 sm:mx-6" data-i18n="coffee"></span>
+        <img class="w-[24px] sm:w-[28px] h-[24px] sm:h-[28px]" alt="" src="{{ 'images/group-5.png' | asset }}">
+      </div>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="w-full py-12 sm:py-20 relative">
+      <div class="w-full max-w-[1238px] mx-auto relative px-4">
+        <div class="flex flex-col items-center gap-2.5 mb-[25px]">
+          <h3 class="font-quicksand font-normal text-[#3b2f2f] text-lg sm:text-xl text-center" data-i18n="products_subtitle"></h3>
+          <h2 class="font-quicksand font-bold text-[#3b2f2f] text-[28px] sm:text-[32px] text-center" data-i18n="products_title"></h2>
+        </div>
+        <div class="flex flex-col items-center gap-2.5 mb-[43px]">
+          <nav class="relative flex items-center gap-4 sm:gap-[55px] flex-wrap justify-center" id="categories-nav"></nav>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mb-[80px]" id="products-grid"></div>
+        <div class="flex justify-center mb-[40px]">
+          <h3 class="font-quicksand font-normal text-[#3b2f2f] text-lg sm:text-xl text-center" data-i18n="our_last_blogs"></h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- WELCOME SECTION -->
+    <section class="w-full flex flex-col lg:flex-row items-center justify-start gap-8 lg:gap-12 py-8 px-4 lg:px-12">
+      <div class="w-full lg:w-[45%] flex justify-center lg:justify-start ltr:lg:ml-[-90px] rtl:lg:mr-[-90px]">
+        <img src="{{ 'images/r1.jpg' | asset }}" alt="Coffee" class="w-full max-w-[500px] h-auto object-cover rounded-2xl">
+      </div>
+      <div class="w-full lg:w-[50%] flex flex-col gap-8 lg:px-4">
+        <header class="flex flex-col items-center lg:items-start gap-2 text-center lg:text-start">
+          <h2 class="font-quicksand font-bold text-[#3b2f2f] text-[32px] sm:text-[40px] leading-tight" data-i18n="welcome_title"></h2>
+          <p class="font-quicksand font-normal text-[#3b2f2f] text-xl sm:text-2xl leading-normal" data-i18n="welcome_subtitle"></p>
+        </header>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-[660px] lg:max-w-none mx-auto lg:mx-0">
+          <div class="flex items-center gap-4 sm:gap-3">
+            <div class="flex-shrink-0 w-[60px] sm:w-[81px] h-[60px] sm:h-[81px] bg-[#6f4336] rounded-full flex items-center justify-center">
+              <div class="w-[30px] sm:w-[46px] h-[30px] sm:h-[46px] bg-cover bg-center bg-no-repeat" style="background-image: url('{{ 'images/link-h2-custom-icon-6-png.png' | asset }}');"></div>
+            </div>
+            <div class="flex flex-col gap-1 sm:gap-2 flex-1">
+              <h3 class="font-quicksand font-bold text-[#004876] text-base leading-normal capitalize" data-i18n="quality"></h3>
+              <p class="font-quicksand font-normal text-[#292625] text-xs leading-5" data-i18n="quality_desc"></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 sm:gap-3">
+            <div class="flex-shrink-0 w-[60px] sm:w-[81px] h-[60px] sm:h-[81px] bg-[#6f4336] rounded-full flex items-center justify-center">
+              <div class="w-[30px] sm:w-[46px] h-[30px] sm:h-[46px] bg-cover bg-center bg-no-repeat" style="background-image: url('{{ 'images/link-h2-custom-icon-8-png.png' | asset }}');"></div>
+            </div>
+            <div class="flex flex-col gap-1 sm:gap-2 flex-1">
+              <h3 class="font-quicksand font-bold text-[#004876] text-base leading-normal capitalize" data-i18n="easy"></h3>
+              <p class="font-quicksand font-normal text-[#292625] text-xs leading-5" data-i18n="easy_desc"></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 sm:gap-3">
+            <div class="flex-shrink-0 w-[60px] sm:w-[81px] h-[60px] sm:h-[81px] bg-[#6f4336] rounded-full flex items-center justify-center">
+              <div class="w-[30px] sm:w-[46px] h-[30px] sm:h-[46px] bg-cover bg-center bg-no-repeat" style="background-image: url('{{ 'images/link-h2-custom-icon-7-png.png' | asset }}');"></div>
+            </div>
+            <div class="flex flex-col gap-1 sm:gap-2 flex-1">
+              <h3 class="font-quicksand font-bold text-[#004876] text-base leading-normal capitalize" data-i18n="taste"></h3>
+              <p class="font-quicksand font-normal text-[#292625] text-xs leading-5" data-i18n="taste_desc"></p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 sm:gap-3">
+            <div class="flex-shrink-0 w-[60px] sm:w-[81px] h-[60px] sm:h-[81px] bg-[#6f4336] rounded-full flex items-center justify-center">
+              <div class="w-[30px] sm:w-[46px] h-[30px] sm:h-[46px] bg-cover bg-center bg-no-repeat" style="background-image: url('{{ 'images/link-h2-custom-icon-5-png-2.png' | asset }}');"></div>
+            </div>
+            <div class="flex flex-col gap-1 sm:gap-2 flex-1">
+              <h3 class="font-quicksand font-bold text-[#004876] text-base leading-normal capitalize" data-i18n="quick"></h3>
+              <p class="font-quicksand font-normal text-[#292625] text-xs leading-5" data-i18n="quick_desc"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBSCRIBE SECTION -->
+    <section class="w-full relative px-4 my-12">
+      <div class="bg-[#004876] rounded-[30px] sm:rounded-[40px] px-4 sm:px-8 py-12 sm:py-[72px] flex flex-col items-center gap-8 sm:gap-16">
+        <h2 class="font-quicksand font-bold text-white text-[32px] sm:text-[50px] text-center tracking-wide leading-tight max-w-[865px]" data-i18n="subscribe_title"></h2>
+        <div class="flex w-full max-w-[400px] h-12 flex-col sm:flex-row gap-2 sm:gap-0">
+          <input type="email" id="email-input" class="h-full rounded-lg sm:rounded-[0px_8px_8px_0px] rtl:sm:rounded-[0px_8px_8px_0px] border border-[#ffffff7a] bg-transparent text-white placeholder:text-white font-quicksand font-medium text-lg px-4 outline-none w-full sm:w-[60%]">
+          <button class="h-full bg-white text-[#292e36] hover:bg-white/90 rounded-lg sm:rounded-[8px_0px_0px_8px] rtl:sm:rounded-[8px_0px_0px_8px] font-quicksand font-bold text-lg w-full sm:w-[40%]" data-i18n="subscribe_btn"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BESTSELLERS -->
+    <section class="w-full py-12 px-4 overflow-hidden relative">
+      <!-- Decorative Plant Background -->
+      <img alt="Nutrabites branding" src="{{ 'images/group1000010755.png' | asset }}" class="absolute top-0 lg:top-[50px] ltr:left-[-150px] lg:ltr:left-[-225px] rtl:right-[-150px] lg:rtl:right-[-225px] opacity-60 rotate-[15deg] w-[250px] lg:w-[411px] pointer-events-none -z-10">
+
+      <div class="container mx-auto flex flex-col lg:flex-row items-center lg:items-center gap-12 relative z-10">
+        <div class="flex flex-col items-center lg:items-start gap-6 lg:gap-8 w-full lg:w-[30%] text-center lg:text-start lg:rtl:pr-[100px] lg:ltr:pl-[100px]">
+          <h2 class="text-[32px] font-bold text-[#3b2f2f] tracking-wide font-quicksand" data-i18n="bestsellers"></h2>
+          <button class="flex items-center justify-center gap-2 w-max px-6 py-3 rounded-full border border-[#6f4336] hover:bg-[#6f4336] hover:text-white text-[#6f4336] transition-colors font-quicksand font-bold text-base">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+            <span data-i18n="check_menu"></span>
+          </button>
+        </div>
+        <div class="flex-1 overflow-x-auto w-full pb-4">
+          <div class="flex gap-4 items-start min-w-max px-2">
+            <!-- Card 1 -->
+            <div class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl bg-transparent">
+              <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl" style="background-image: url('{{ 'images/pic.png' | asset }}')">
+                <div class="flex justify-end p-3"><img class="w-[37px] h-[37px]" alt="Favorite" src="{{ 'images/frame40.svg' | asset }}"></div>
+                <div class="bg-white/30 backdrop-blur-md px-4 py-5 text-center space-y-2 rounded-b-xl">
+                  <h3 class="font-bold text-[#3b2f2f] text-xl mb-1 font-quicksand" data-i18n="brazilian_coffee">Brazilian Roasted Coffee</h3>
+                  <p class="text-[#e1b068] font-bold text-base font-quicksand">30 <span data-i18n="sar">SAR</span></p>
+                  <button class="bg-[#6f4336] text-white px-5 py-2 rounded-full hover:bg-[#5b372b] transition font-quicksand w-full" data-i18n="add_to_cart"></button>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl bg-transparent">
+              <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl" style="background-image: url('{{ 'images/pic-2.png' | asset }}')">
+                <div class="flex justify-end p-3"><img class="w-[37px] h-[37px]" alt="Favorite" src="{{ 'images/frame40-2.svg' | asset }}"></div>
+                <div class="bg-white/30 backdrop-blur-md px-4 py-5 text-center space-y-2 rounded-b-xl">
+                  <h3 class="font-bold text-[#3b2f2f] text-xl mb-1 font-quicksand" data-i18n="kenyan_coffee">Kenyan Dark Roast</h3>
+                  <p class="text-[#e1b068] font-bold text-base font-quicksand">25 <span data-i18n="sar">SAR</span></p>
+                  <button class="bg-[#6f4336] text-white px-5 py-2 rounded-full hover:bg-[#5b372b] transition font-quicksand w-full" data-i18n="add_to_cart"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section class="w-full py-12 sm:py-20 px-4 sm:px-[6.04%] mb-8">
+      <h2 class="font-bold text-[#3b2f2f] text-[28px] sm:text-[32px] text-center mb-10 sm:mb-[84px] font-quicksand" data-i18n="blogs_title"></h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <!-- Blog 1 -->
+        <a href="#" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ 'images/pic-1.png' | asset }}" alt="Blog Post" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors" data-i18n="blog1_title"></h3>
+            <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand" data-i18n="blog1_desc"></p>
+            <div class="flex justify-between items-center mt-auto">
+              <span class="text-[#004876] font-bold text-sm self-start font-quicksand" data-i18n="read_more"></span>
+              <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand" data-i18n="featured"></span>
+            </div>
+          </div>
+        </a>
+        <!-- Blog 2 -->
+        <a href="#" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ 'images/pic-4.png' | asset }}" alt="Blog Post" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors" data-i18n="blog2_title"></h3>
+            <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand" data-i18n="blog2_desc"></p>
+            <div class="flex justify-between items-center mt-auto">
+              <span class="text-[#004876] font-bold text-sm self-start font-quicksand" data-i18n="read_more"></span>
+              <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand" data-i18n="featured"></span>
+            </div>
+          </div>
+        </a>
+        <!-- Blog 3 -->
+        <a href="#" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ 'images/pic-5.png' | asset }}" alt="Blog Post" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors" data-i18n="blog3_title"></h3>
+            <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand" data-i18n="blog3_desc"></p>
+            <div class="flex justify-between items-center mt-auto">
+              <span class="text-[#004876] font-bold text-sm self-start font-quicksand" data-i18n="read_more"></span>
+              <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand" data-i18n="featured"></span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative w-full bg-[#004876] py-[60px] sm:py-[78px] px-6 sm:px-12 lg:px-[113px] overflow-visible">
+      <div class="max-w-[1440px] mx-auto flex flex-col lg:flex-row justify-between items-start relative z-10">
+        <div class="flex flex-col w-full">
+          <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 mb-12 lg:mb-[73px] items-start">
+            <div class="flex-shrink-0">
+              <img class="w-[90px] lg:w-[140px] object-contain" alt="Logo" src="{{ 'images/group-14.png' | asset }}">
+            </div>
+            <div class="flex flex-col sm:flex-row flex-wrap gap-10 sm:gap-16 lg:gap-24 flex-1">
+              <nav class="flex flex-col gap-3">
+                <h3 class="font-cormorant font-bold text-white text-lg tracking-wide mb-1" data-i18n="menu"></h3>
+                <a href="#" class="font-quicksand font-medium text-[#ffffff95] hover:text-white transition-colors" data-i18n="home"></a>
+                <a href="#" class="font-quicksand font-medium text-[#ffffff95] hover:text-white transition-colors" data-i18n="our_products"></a>
+                <a href="#" class="font-quicksand font-medium text-[#ffffff95] hover:text-white transition-colors" data-i18n="faqs"></a>
+                <a href="#" class="font-quicksand font-medium text-[#ffffff95] hover:text-white transition-colors" data-i18n="contact_us"></a>
+                <a href="#" class="font-quicksand font-medium text-[#ffffff95] hover:text-white transition-colors" data-i18n="blogs"></a>
+              </nav>
+              <div class="flex flex-col gap-3">
+                <h3 class="font-cormorant font-bold text-white text-lg tracking-wide mb-1" data-i18n="cafe_locator"></h3>
+                <address class="font-quicksand font-medium text-[#ffffff95] leading-relaxed not-italic max-w-[200px]" data-i18n="address">
+                  حي السلام الأول، الأحساء، شارع الملك سعود
+                </address>
+              </div>
+              <div class="flex flex-col gap-3">
+                <h3 class="font-cormorant font-bold text-white text-lg tracking-wide mb-1" data-i18n="contact"></h3>
+                <p class="font-quicksand font-medium text-[#ffffff95] max-w-[180px]" data-i18n="contact_desc"></p>
+                <a href="tel:0135757570" class="font-bold text-[#ffffff95] hover:text-white transition-colors font-quicksand" dir="ltr">0135757570</a>
+                <a href="tel:0537001819" class="font-bold text-[#ffffff95] hover:text-white transition-colors font-quicksand" dir="ltr">0537001819</a>
+                <a href="mailto:Info@ratio.sa" class="font-bold text-[#ffffff95] hover:text-white transition-colors font-quicksand" dir="ltr">Info@ratio.sa</a>
+              </div>
+            </div>
+          </div>
+          <p class="text-[#ffffff95] text-sm font-quicksand" data-i18n="privacy"></p>
+        </div>
+        <div class="absolute rtl:left-0 ltr:right-0 bottom-0 sm:bottom-auto sm:top-[-100px] lg:top-[-150px] opacity-40 sm:opacity-100 -z-10 pointer-events-none">
+          <img src="{{ 'images/wepik-export-20240121085835p8sy.png' | asset }}" alt="Coffee bag" class="w-[220px] sm:w-[320px] md:w-[400px] lg:w-[460px] object-contain drop-shadow-2xl rtl:-scale-x-100">
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MENU OVERLAY -->
+  <div id="menu-overlay" class="fixed inset-0 bg-white z-[9999] hidden flex-col items-center justify-center px-6">
+    <button id="menu-close-btn" class="absolute top-6 rtl:left-8 ltr:right-8 text-[#004876] hover:text-[#6f4336] transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <div class="absolute top-6 rtl:right-8 ltr:left-8">
+      <img src="{{ 'images/logo.png' | asset }}" alt="Logo" class="h-10">
+    </div>
+    <nav class="flex flex-col items-center gap-8 text-[#004876]">
+      <a href="index.html" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="home"></a>
+      <a href="#" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="our_products"></a>
+      <a href="#" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="how_to_brew"></a>
+      <a href="#" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="blogs"></a>
+      <a href="#" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="our_branches"></a>
+      <a href="#" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="contact_us"></a>
+    </nav>
+    <img src="{{ 'images/menu-leaf.png' | asset }}" alt="" class="absolute bottom-0 rtl:right-0 ltr:left-0 w-[160px] opacity-80 rtl:-scale-x-100">
+  </div>
+
+  <!-- CART DRAWER -->
+  <div id="cart-overlay" class="fixed inset-0 bg-black/40 z-40 hidden rtl:justify-start ltr:justify-end">
+    <div class="w-full max-w-[90%] sm:max-w-[360px] bg-white h-full sm:h-auto sm:max-h-[85vh] p-4 sm:p-6 flex flex-col cart-drawer sm:rounded-xl overflow-hidden sm:mt-auto sm:mb-auto sm:rtl:ml-4 sm:ltr:mr-4">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-[#004876] font-quicksand" data-i18n="your_cart"></h2>
+        <button id="cart-close-btn" class="text-[#004876] hover:text-[#6f4336]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <ul class="space-y-4 flex-1 overflow-y-auto" id="cart-items-list"></ul>
+      <p class="text-gray-600 text-center py-10 font-quicksand" id="cart-empty-msg" data-i18n="empty_cart"></p>
+      <div id="cart-footer" class="hidden mt-5 space-y-3 border-t pt-4">
+        <p class="rtl:text-left ltr:text-right text-gray-700 font-bold text-lg font-quicksand">
+          <span data-i18n="total"></span> <span class="text-[#6f4336] ml-1" id="cart-total" dir="ltr">0.00 SAR</span>
+        </p>
+        <button class="w-full bg-[#004876] text-white py-3 rounded-full hover:bg-[#00385a] font-quicksand font-bold" data-i18n="proceed_checkout"></button>
+        <button onclick="clearCart()" class="text-[#6f4336] hover:underline text-sm font-quicksand font-bold w-full" data-i18n="clear_cart"></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // TRANSLATION DICTIONARY
+    const i18n = {
+      ar: {
+        hero_subtitle: "احصل على قهوتك المفضلة (الأفضل) مُوصَّلة إليك.",
+        shop_cta: "تسوق بخصم 20%",
+        color_dark: "داكن", color_brown: "بني", color_beige: "بيج",
+        hero_title: "اصنع قهوتك<br>مثل",
+        hero_pro: "المحترف",
+        products_subtitle: "منتجاتنا", products_title: "جرّب ما يميّزنا",
+        all_categories: "كل الفئات", special_offers: "عروض خاصة", best_seller: "الأكثر مبيعاً", roasting: "التحميص", coffee: "القهوة", coffee_equipment: "أدوات القهوة",
+        our_last_blogs: "أحدث مقالاتنا",
+        welcome_title: "مرحباً في متجرنا", welcome_subtitle: "القهوة التي تريدها، متى تريدها",
+        quality: "الجودة", quality_desc: "نحرص على اختيار أفضل حبوب البن من جميع أنحاء العالم لضمان جودة متسقة في كل كوب.",
+        easy: "سهولة", easy_desc: "خطوات تحضير بسيطة يمكن لأي شخص اتباعها، من المبتدئ إلى الباريستا المحترف.",
+        taste: "الطعم", taste_desc: "نكهات غنية وجريئة مصنوعة باتقان لتجربة قهوة لا تُنسى.",
+        quick: "السرعة", quick_desc: "توصيل سريع ووقت تحضير قصير حتى تكون قهوتك جاهزة في اللحظة المناسبة.",
+        subscribe_title: "ابقَ على تواصل! واحصل على خصم 20%", subscribe_btn: "اشترك", email_placeholder: "البريد الإلكتروني",
+        bestsellers: "الأكثر مبيعاً", check_menu: "تصفح قائمتنا",
+        brazilian_coffee: "قهوة برازيلية محمصة", kenyan_coffee: "قهوة كينية تحميص داكن",
+        blogs_title: "المقالات المميزة", read_more: "اقرأ المزيد ←", featured: "مميز",
+        menu: "القائمة", cafe_locator: "دليل المقاهي", contact: "تواصل معنا", contact_desc: "هل لديك سؤال؟<br>أرسله إلينا!", privacy: "سياسة الخصوصية",
+        your_cart: "سلة التسوق", empty_cart: "السلة فارغة ☕", total: "المجموع:", proceed_checkout: "إتمام الطلب", clear_cart: "إفراغ السلة", remove: "إزالة", qty: "الكمية:", add_to_cart: "أضف إلى السلة", sar: "ر.س",
+        home: "الرئيسية", our_products: "منتجاتنا", how_to_brew: "طريقة التحضير", blogs: "المدونة", our_branches: "فروعنا", contact_us: "تواصل معنا", faqs: "الأسئلة الشائعة",
+        blog1_title: "فن صب القهوة", blog1_desc: "تعلم كيف تصنع أفضل قهوة مقطرة في المنزل بخطوات بسيطة.",
+        blog2_title: "الإسبريسو مقابل المقطرة", blog2_desc: "ما هو الفرق الحقيقي بين أشهر طريقتين لتحضير القهوة؟",
+        blog3_title: "أصول حبوب القهوة", blog3_desc: "استكشف النكهات المختلفة من أشهر مناطق زراعة القهوة حول العالم."
+      },
+      en: {
+        hero_subtitle: "Get your ordered (better) coffee delivered to you if you want.",
+        shop_cta: "SHOP 20% OFF",
+        color_dark: "Dark", color_brown: "brown", color_beige: "Beige",
+        hero_title: "Make Your Coffee<br>like A",
+        hero_pro: "Pro",
+        products_subtitle: "Our products", products_title: "Special to Try",
+        all_categories: "All categories", special_offers: "Special offers", best_seller: "Best seller", roasting: "Roasting", coffee: "Coffee", coffee_equipment: "Coffee equipment",
+        our_last_blogs: "Our last blogs",
+        welcome_title: "Welcome to Our Shop", welcome_subtitle: "The coffee you want, when you want it",
+        quality: "quality", quality_desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        easy: "Easy", easy_desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        taste: "taste", taste_desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        quick: "quick", quick_desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        subscribe_title: "Stay In Touch! And Get 20% Discount", subscribe_btn: "Subscribe", email_placeholder: "Email",
+        bestsellers: "Bestsellers", check_menu: "CHECK OUT OUR MENU",
+        brazilian_coffee: "Brazilian Roasted Coffee", kenyan_coffee: "Kenyan Dark Roast",
+        blogs_title: "Featured Blogs", read_more: "Read More →", featured: "Featured",
+        menu: "Menu", cafe_locator: "Café Locator", contact: "Contact", contact_desc: "Do you have a <br>question? Send it to <br>us!", privacy: "PRIVACY POLICY",
+        your_cart: "Your Cart", empty_cart: "Your cart is empty ☕", total: "Total:", proceed_checkout: "Proceed to Checkout", clear_cart: "Clear Cart", remove: "Remove", qty: "Qty:", add_to_cart: "Add to Cart", sar: "SAR",
+        home: "Home", our_products: "Our Products", how_to_brew: "How To Brew", blogs: "Blogs", our_branches: "Our Branches", contact_us: "Contact Us", faqs: "FAQs",
+        blog1_title: "The Art of Pour Over", blog1_desc: "Learn how to make the perfect pour over coffee at home with step-by-step guidance.",
+        blog2_title: "Espresso vs Drip", blog2_desc: "What is the real difference between these two popular brewing methods?",
+        blog3_title: "Coffee Bean Origins", blog3_desc: "Explore the distinct flavors from different coffee-growing regions around the world."
+      }
+    };
+
+    let currentLang = 'ar'; // Default to Arabic
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.getElementById('lang-toggle').textContent = currentLang === 'ar' ? 'EN' : 'عربي';
+      document.getElementById('email-input').placeholder = i18n[currentLang].email_placeholder;
+      updateText();
+      renderCategories();
+      renderProducts();
+      renderCart();
+    }
+
+    function updateText() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18n[currentLang][key]) el.innerHTML = i18n[currentLang][key];
+      });
+    }
+
+    // ANIMATIONS & MENU
+    setTimeout(() => document.getElementById('main-content').classList.add('slide-up'), 4700);
+    document.getElementById('menu-open-btn').addEventListener('click', () => { document.getElementById('menu-overlay').classList.remove('hidden'); document.getElementById('menu-overlay').classList.add('flex'); });
+    document.getElementById('menu-close-btn').addEventListener('click', () => { document.getElementById('menu-overlay').classList.add('hidden'); document.getElementById('menu-overlay').classList.remove('flex'); });
+
+    // CART
+    let cart = JSON.parse(localStorage.getItem('ratio_cart') || '[]');
+    function saveCart() { localStorage.setItem('ratio_cart', JSON.stringify(cart)); renderCart(); updateBadge(); }
+    function updateBadge() {
+      const b = document.getElementById('cart-badge');
+      const total = cart.reduce((s,i)=>s+(i.quantity||1),0);
+      b.textContent = total;
+      total > 0 ? (b.classList.remove('hidden'), b.classList.add('flex')) : (b.classList.add('hidden'), b.classList.remove('flex'));
+    }
+    function renderCart() {
+      const list = document.getElementById('cart-items-list');
+      const empty = document.getElementById('cart-empty-msg');
+      const footer = document.getElementById('cart-footer');
+      if (cart.length === 0) { list.innerHTML = ''; empty.classList.remove('hidden'); footer.classList.add('hidden'); }
+      else {
+        empty.classList.add('hidden'); footer.classList.remove('hidden');
+        list.innerHTML = cart.map(item => `
+          <li class="flex justify-between items-start gap-3 border-b pb-3 border-gray-100">
+            <div class="flex gap-3 w-[65%]">
+              <img src="{{ 'images/${item.image}' | asset }}" class="w-12 h-12 object-cover rounded-md border">
+              <div class="flex-1">
+                <p class="font-bold text-sm leading-tight font-quicksand">${item.title}</p>
+                <p class="text-gray-500 text-xs font-quicksand font-bold">${i18n[currentLang].qty} ${item.quantity}</p>
+              </div>
+            </div>
+            <div class="flex flex-col items-end text-left rtl:text-right">
+              <span class="text-[#6f4336] font-bold text-sm font-quicksand" dir="ltr">${(item.price * item.quantity).toFixed(2)} ${i18n[currentLang].sar}</span>
+              <button onclick="removeFromCart(${item.id})" class="text-xs text-red-500 hover:text-red-700 mt-1 font-quicksand font-bold">${i18n[currentLang].remove}</button>
+            </div>
+          </li>`).join('');
+        document.getElementById('cart-total').textContent = cart.reduce((s,i)=>s+i.price*i.quantity,0).toFixed(2) + ' ' + i18n[currentLang].sar;
+      }
+    }
+    function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); }
+    function clearCart() { cart = []; saveCart(); }
+    document.getElementById('cart-open-btn').addEventListener('click', () => { renderCart(); document.getElementById('cart-overlay').classList.remove('hidden'); document.getElementById('cart-overlay').classList.add('flex'); });
+    document.getElementById('cart-close-btn').addEventListener('click', () => { document.getElementById('cart-overlay').classList.add('hidden'); document.getElementById('cart-overlay').classList.remove('flex'); });
+
+    // PRODUCTS
+    const allProducts = [
+      { id: 1, image: 'pic-1.png', overlay: 'image-11.png', overlayClass: 'top-5 rtl:right-1/2 ltr:left-1/2 rtl:translate-x-1/2 ltr:-translate-x-1/2 w-[254px] h-[254px]', author: 'Amir Samantha', discount: false, price: 18, key: 'brazilian_coffee', cat: 'coffee' },
+      { id: 2, image: 'pic-4.png', overlay: null, author: 'John Lennonk', discount: false, price: 22, title_ar: 'روست إثيوبي', title_en: 'Ethiopian Roast', cat: 'roasting' },
+      { id: 3, image: 'pic-5.png', overlay: null, author: 'Toekang Sayoer', discount: true, price: 20, title_ar: 'خليط قهوة خاص', title_en: 'Special Coffee Blend', cat: 'special_offers' },
+      { id: 4, image: 'pic-3.png', overlay: 'bananers-3d-brown-paper-coffee-bean-bag-transparent-background-a.png', overlayClass: 'top-[30px] rtl:right-[23px] ltr:left-[23px] w-[232px] h-[232px]', author: 'Imelda Saranghae', discount: false, price: 25, title_ar: 'حقيبة قهوة ممتازة', title_en: 'Coffee Bag Premium', cat: 'coffee_equipment' },
+    ];
+    const cats = ['all_categories', 'special_offers', 'best_seller', 'roasting', 'coffee', 'coffee_equipment'];
+    let activeCat = 'all_categories';
+
+    function renderCategories() {
+      const nav = document.getElementById('categories-nav');
+      nav.innerHTML = '';
+      cats.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.innerHTML = i18n[currentLang][cat];
+        btn.className = `relative font-quicksand text-lg sm:text-xl pb-1 transition-all duration-300 ${cat === activeCat ? 'cat-active font-bold text-[#004876]' : 'font-medium text-[#3b2f2f] hover:text-[#004876]'}`;
+        btn.onclick = () => { activeCat = cat; renderCategories(); renderProducts(); };
+        nav.appendChild(btn);
+      });
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('products-grid');
+      const filtered = activeCat === 'all_categories' ? allProducts : allProducts.filter(p => p.cat === activeCat);
+      grid.innerHTML = filtered.map(p => {
+        const t = p.key ? i18n[currentLang][p.key] : (currentLang==='ar'?p.title_ar:p.title_en);
+        return `<div><a href="product.html?id=${p.id}" class="block hover:scale-105 transition-transform duration-300">
+          <div class="relative w-full h-[250px] sm:h-[300px] mb-3.5 bg-gray-50 rounded-xl overflow-hidden">
+            <img class="w-full h-full object-cover" src="{{ 'images/${p.image}' | asset }}">
+            ${p.overlay ? `<img class="absolute object-cover ${p.overlayClass}" src="{{ 'images/${p.overlay}' | asset }}">` : ''}
+            ${p.discount ? `<span class="absolute top-[30px] rtl:right-1/2 ltr:left-1/2 rtl:translate-x-1/2 ltr:-translate-x-1/2 bg-[#f9edbd] text-[#3b2f2f] px-2 py-1 text-xs rounded font-bold">-30%</span>` : ''}
+          </div>
+          <h3 class="font-quicksand font-bold text-[#3b2f2f] text-[20px] sm:text-[22px] text-center mb-1">${t}</h3>
+          <p class="font-quicksand font-normal text-[#8b8ba5] text-sm sm:text-base text-center mb-2">${p.author}</p>
+          <div class="flex items-center justify-center gap-2">${`<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`.repeat(5)}</div>
+        </a></div>`;
+      }).join('');
+    }
+
+    // Initialize
+    document.getElementById('email-input').placeholder = i18n.ar.email_placeholder;
+    updateText();
+    renderCategories();
+    renderProducts();
+    updateBadge();
+  </script>
+
 {% endblock %}
