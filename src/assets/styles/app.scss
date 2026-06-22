@@ -93,3 +93,93 @@
 
 @import 'lite-youtube-embed/src/lite-yt-embed.css';
 @import 'mmenu-light/dist/mmenu-light.css';
+
+/* ==========================================
+   RATIO COFFEE THEME - Custom Styles
+   ========================================== */
+
+/* --- Fonts --- */
+.font-cormorant { font-family: "Cormorant Infant", Helvetica, serif !important; }
+.font-quicksand { font-family: Quicksand, "Cairo", Helvetica, sans-serif !important; }
+
+/* --- Intro / Loading Screen --- */
+.intro-container {
+  position: fixed; inset: 0; background-color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease-out 3.5s forwards;
+}
+@keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+.intro-gif { width: 300px; }
+
+/* --- Main Content Slide-up Animation --- */
+.main-content { opacity: 0; transform: translateY(100vh); transition: transform 2.2s ease-out, opacity 1.5s ease-out; }
+.main-content.slide-up { opacity: 1; transform: translateY(0); }
+
+/* --- Category Active Tab --- */
+.cat-active { font-weight: 600; color: #004876; }
+.cat-active::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: #004876; border-radius: 9999px; }
+
+/* --- Marquee Scroll --- */
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes scrollrtl { 0% { transform: translateX(0); } 100% { transform: translateX(50%); } }
+html[dir="rtl"] .marquee-inner { animation: scrollrtl 25s linear infinite; }
+html[dir="ltr"] .marquee-inner { animation: scroll 25s linear infinite; }
+
+/* --- Cart & Menu Drawer Animations --- */
+@keyframes slideInSide { from { transform: translateX(100%); } to { transform: translateX(0); } }
+@keyframes slideInSideRtl { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+html[dir="rtl"] .cart-drawer { animation: slideInSideRtl 0.3s ease-out; }
+html[dir="ltr"] .cart-drawer { animation: slideInSide 0.3s ease-out; }
+
+/* --- Color Utilities used in JS-rendered HTML --- */
+.text-coffee-dark { color: #3b2f2f; }
+.text-coffee-accent { color: #6f4336; }
+.text-coffee-blue { color: #004876; }
+.bg-coffee-dark { background-color: #3b2f2f; }
+.bg-coffee-accent { background-color: #6f4336; }
+.bg-coffee-hero { background-color: #f5efe6; }
+.bg-coffee-yellow { background-color: #f9edbd; }
+.border-coffee { border-color: #3b2f2f; }
+
+/* Force arbitrary color classes that Tailwind may not scan from JS strings */
+.bg-\[\#3b2f2f\] { background-color: #3b2f2f !important; }
+.bg-\[\#6f4336\] { background-color: #6f4336 !important; }
+.bg-\[\#004876\] { background-color: #004876 !important; }
+.bg-\[\#f5efe6\] { background-color: #f5efe6 !important; }
+.bg-\[\#f9edbd\] { background-color: #f9edbd !important; }
+.bg-\[\#fdf6ee\] { background-color: #fdf6ee !important; }
+.bg-\[\#fff8f0\] { background-color: #fff8f0 !important; }
+.text-\[\#3b2f2f\] { color: #3b2f2f !important; }
+.text-\[\#6f4336\] { color: #6f4336 !important; }
+.text-\[\#004876\] { color: #004876 !important; }
+.text-\[\#8b8ba5\] { color: #8b8ba5 !important; }
+.text-\[\#3d2c2c\] { color: #3d2c2c !important; }
+.border-\[\#3b2f2f\] { border-color: #3b2f2f !important; }
+.border-\[\#6f4336\] { border-color: #6f4336 !important; }
+.hover\:bg-\[\#3b2f2f\]:hover { background-color: #3b2f2f !important; }
+.hover\:bg-\[\#6f4336\]:hover { background-color: #6f4336 !important; }
+.hover\:text-\[\#004876\]:hover { color: #004876 !important; }
+.hover\:text-\[\#6f4336\]:hover { color: #6f4336 !important; }
+.hover\:text-\[\#3b2f2f\]:hover { color: #3b2f2f !important; }
+.hover\:border-\[\#3b2f2f\]:hover { border-color: #3b2f2f !important; }
+.text-\[\#20px\] { font-size: 20px !important; }
+.text-\[20px\] { font-size: 20px !important; }
+.text-\[22px\] { font-size: 22px !important; }
+.min-h-\[90vh\] { min-height: 90vh !important; }
+.min-h-\[95vh\] { min-height: 95vh !important; }
+.h-\[250px\] { height: 250px !important; }
+.h-\[300px\] { height: 300px !important; }
+.top-\[30px\] { top: 30px !important; }
+.w-\[254px\] { width: 254px !important; }
+.h-\[254px\] { height: 254px !important; }
+.w-\[232px\] { width: 232px !important; }
+.h-\[232px\] { height: 232px !important; }
+.w-\[65\%\] { width: 65% !important; }
+.rtl\:right-1\/2:where([dir="rtl"], [dir="rtl"] *) { right: 50% !important; }
+.ltr\:left-1\/2:where([dir="ltr"], [dir="ltr"] *) { left: 50% !important; }
+.rtl\:translate-x-1\/2:where([dir="rtl"], [dir="rtl"] *) { transform: translateX(50%) !important; }
+.ltr\:-translate-x-1\/2:where([dir="ltr"], [dir="ltr"] *) { transform: translateX(-50%) !important; }
+.rtl\:right-\[23px\]:where([dir="rtl"], [dir="rtl"] *) { right: 23px !important; }
+.ltr\:left-\[23px\]:where([dir="ltr"], [dir="ltr"] *) { left: 23px !important; }
+
