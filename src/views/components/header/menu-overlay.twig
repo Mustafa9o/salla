@@ -1,0 +1,42 @@
+{# ============================================================ #}
+{# FULLSCREEN MENU OVERLAY — components/header/menu-overlay.twig #}
+{# Mirrors Home.tsx fullscreen menu                              #}
+{# ============================================================ #}
+<div id="menu-overlay" class="fixed inset-0 bg-white z-[9999] hidden flex-col items-center justify-center px-6">
+
+  {# Close Button #}
+  <button id="menu-close-btn" class="absolute top-6 right-8 text-[#004876] hover:text-[#6f4336] transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+  {# Logo #}
+  <div class="absolute top-6 left-8">
+    <img src="{{ store.logo ? store.logo|cdn(175) : ('images/logo.png' | asset) }}" alt="{{ store.name }}" class="h-10">
+  </div>
+
+  {# Navigation Links #}
+  <nav class="flex flex-col items-center gap-8 text-[#004876]">
+    <a href="{{ store.url }}" class="text-3xl font-semibold hover:text-[#6f4336] transition-colors font-quicksand" onclick="closeMenu()">
+      {{ trans('blocks.header.home') }}
+    </a>
+    {% for category in store.categories %}
+      <a href="{{ category.url }}" class="text-3xl font-semibold hover:text-[#6f4336] transition-colors font-quicksand" onclick="closeMenu()">
+        {{ category.name }}
+      </a>
+    {% else %}
+      {# Fallback static links if no dynamic categories yet #}
+      <a href="{{ store.url }}products" class="text-3xl font-semibold hover:text-[#6f4336] transition-colors font-quicksand" onclick="closeMenu()">
+        {{ trans('pages.products.title') }}
+      </a>
+      <a href="{{ store.url }}blogs" class="text-3xl font-semibold hover:text-[#6f4336] transition-colors font-quicksand" onclick="closeMenu()">
+        {{ trans('pages.blogs.title') }}
+      </a>
+      <a href="{{ store.url }}contact-us" class="text-3xl font-semibold hover:text-[#6f4336] transition-colors font-quicksand" onclick="closeMenu()">
+        {{ trans('pages.contact.title') }}
+      </a>
+    {% endfor %}
+  </nav>
+
+</div>

@@ -285,3 +285,87 @@ isElementLoaded(selector){
 }
 
 salla.onReady(() => (new App).loadTheApp());
+// ============================================================
+// theme.js — Global JavaScript for the Ratio Coffee Salla Theme
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  // ===== Intro animation (mirrors App.tsx) =====
+  const mainContent = document.getElementById('main-content');
+  if (mainContent) {
+    setTimeout(() => {
+      mainContent.classList.add('slide-up');
+    }, 4700);
+  }
+
+  // ===== Menu open/close =====
+  const menuOpenBtn = document.getElementById('menu-open-btn');
+  const menuCloseBtn = document.getElementById('menu-close-btn');
+  const menuOverlay = document.getElementById('menu-overlay');
+
+  function openMenu() {
+    menuOverlay?.classList.remove('hidden');
+    menuOverlay?.classList.add('flex');
+  }
+
+  function closeMenu() {
+    menuOverlay?.classList.add('hidden');
+    menuOverlay?.classList.remove('flex');
+  }
+
+  menuOpenBtn?.addEventListener('click', openMenu);
+  menuCloseBtn?.addEventListener('click', closeMenu);
+
+  // Close menu when clicking a link inside it
+  menuOverlay?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // ===== Category filter (homepage) =====
+  window.filterByCategory = function (btn, categoryId) {
+    // Update button styles
+    document.querySelectorAll('[data-category]').forEach(b => {
+      b.classList.remove('category-active', 'font-semibold', 'text-[#004876]');
+      b.classList.add('font-normal', 'text-[#3b2f2f]');
+    });
+    btn.classList.add('category-active', 'font-semibold', 'text-[#004876]');
+    btn.classList.remove('font-normal', 'text-[#3b2f2f]');
+
+    // Show/hide product cards
+    document.querySelectorAll('[data-product-category]').forEach(card => {
+      const match = categoryId === 'all' || card.dataset.productCategory === String(categoryId);
+      card.closest('a')?.parentElement && (card.closest('a').parentElement.style.display = match ? '' : 'none');
+    });
+  };
+
+  // ===== Product page accordion =====
+  let openTab = 'details';
+
+  window.toggleTab = function (id) {
+    const content = document.getElementById('acc-' + id);
+    const chevron = document.getElementById('chevron-' + id);
+    if (!content) return;
+
+    if (openTab === id) {
+      content.classList.add('hidden');
+      chevron?.classList.remove('rotate-180');
+      openTab = null;
+    } else {
+      if (openTab) {
+        document.getElementById('acc-' + openTab)?.classList.add('hidden');
+        document.getElementById('chevron-' + openTab)?.classList.remove('rotate-180');
+      }
+      content.classList.remove('hidden');
+      chevron?.classList.add('rotate-180');
+      openTab = id;
+    }
+  };
+
+});
+

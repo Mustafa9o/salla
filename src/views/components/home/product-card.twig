@@ -1,0 +1,59 @@
+{# ============================================================ #}
+{# PRODUCT CARD — components/home/product-card.twig             #}
+{# Mirrors NewsletterSection.tsx product card                   #}
+{# Usage: {% include 'components/home/product-card' with        #}
+{#         { product: product } %}                              #}
+{# ============================================================ #}
+<a href="{{ product.url }}" class="block hover:scale-105 transition-transform duration-300">
+  <div class="border-0 shadow-none bg-transparent cursor-pointer">
+    <div class="p-0">
+
+      {# Product Image Area #}
+      <div class="relative w-full h-[300px] mb-3.5">
+        <img
+          class="w-full h-full object-cover"
+          alt="{{ product.name }}"
+          src="{{ product.image.url }}"
+          loading="lazy"
+        >
+
+        {# Discount Badge — shows if sale price exists #}
+        {% if product.sale_price and product.sale_price < product.regular_price %}
+          {% set discount_pct = (((product.regular_price - product.sale_price) / product.regular_price) * 100) | round %}
+          <span class="absolute top-[30px] left-1/2 -translate-x-1/2 bg-[#f9edbd] text-[#3b2f2f] px-2 py-1 text-xs rounded font-quicksand font-semibold">
+            -{{ discount_pct }}%
+          </span>
+        {% endif %}
+      </div>
+
+      {# Product Name #}
+      <h3 class="font-quicksand font-medium text-[#3b2f2f] text-[22px] text-center mb-2">
+        {{ product.name }}
+      </h3>
+
+      {# Sold by / store name #}
+      <p class="font-quicksand font-normal text-[#8b8ba5] text-base text-center mb-3">
+        {{ store.name }}
+      </p>
+
+      {# Price #}
+      <p class="font-quicksand font-semibold text-[#6f4336] text-lg text-center mb-3">
+        {{ product.price }}
+      </p>
+
+      {# Star Rating (Salla component) #}
+      <div class="flex items-center justify-center mb-3">
+        <salla-rating-stars product-id="{{ product.id }}" stars="{{ product.rating | default(5) }}"></salla-rating-stars>
+      </div>
+
+      {# Add to Cart (Salla component) #}
+      <div class="flex justify-center">
+        <salla-add-product-button
+          product-id="{{ product.id }}"
+          class="w-full"
+        ></salla-add-product-button>
+      </div>
+
+    </div>
+  </div>
+</a>

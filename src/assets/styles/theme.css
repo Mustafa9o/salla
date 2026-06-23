@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   App-level animations (from App.css in the React source)
+   ============================================================ */
+.intro-container {
+  position: fixed;
+  inset: 0;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease-out 3.5s forwards;
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.intro-gif { width: 300px; }
+
+.main-content {
+  opacity: 0;
+  transform: translateY(100vh);
+  transition: transform 2.2s ease-out, opacity 1.5s ease-out;
+}
+
+.main-content.slide-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   Scrolling Marquee
+   ============================================================ */
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-scroll {
+  display: inline-flex;
+  animation: scroll 25s linear infinite;
+}
+
+/* ============================================================
+   Cart Slide-in
+   ============================================================ */
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.animate-slide-left { animation: slideLeft 0.3s ease-out; }
+
+/* ============================================================
+   Active category underline
+   ============================================================ */
+.category-active {
+  font-weight: 600;
+  color: #004876;
+  border-bottom: 2px solid #004876;
+}
