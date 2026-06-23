@@ -1,0 +1,346 @@
+{# ============================================================ #}
+{# HOMEPAGE — pages/index.twig                                  #}
+{# Full conversion of the React Home design to Salla Twilight   #}
+{# ============================================================ #}
+{% extends "layouts.master" %}
+
+{% block title %}{{ store.name }} — {{ trans('pages.home.title') }}{% endblock %}
+{% block description %}{{ store.description }}{% endblock %}
+
+{% block content %}
+
+{# ============================================================ #}
+{# HERO SECTION                                                  #}
+{# ============================================================ #}
+<section class="relative w-full bg-white overflow-hidden min-h-[90vh] sm:min-h-[95vh] lg:min-h-screen flex flex-col justify-between">
+
+  {# === HERO CONTENT === #}
+  <div class="container mx-auto px-4 sm:px-6 md:px-10 mt-[90px] sm:mt-[120px] md:mt-[140px] lg:mt-[8vw] relative z-10 flex-1 flex items-center">
+    <div class="w-full">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">
+
+        {# LEFT: Hero product image + CTA #}
+        <div class="relative flex flex-col items-center justify-center w-full lg:w-1/3 order-1">
+          <div class="relative w-full max-w-[400px] h-auto flex items-center justify-center">
+            <img
+              src="{{ 'images/r2.jpg' | asset }}"
+              alt="{{ store.name }}"
+              class="w-full h-full object-contain"
+            >
+          </div>
+          <div class="mt-4 text-center px-4 w-full lg:absolute lg:bottom-4 xl:bottom-8 lg:left-1/2 lg:-translate-x-1/2">
+            <p class="font-normal text-[#292625] text-base sm:text-lg mb-4 font-quicksand">
+              {{ trans('pages.home.hero_subtitle') }}
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <a
+                href="{{ store.url }}products"
+                class="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl border border-[#6f4336] bg-transparent hover:bg-[#6f4336]/10 transition-colors"
+              >
+                <span class="font-medium text-[#6f4336] text-sm sm:text-base font-quicksand">
+                  {{ trans('pages.home.shop_cta') }}
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#6f4336]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+              </a>
+              <img class="w-[46px] h-[46px]" alt="" src="{{ 'images/group1000010764.png' | asset }}">
+            </div>
+          </div>
+        </div>
+
+        {# MIDDLE: Discount / Feature Card #}
+        <div class="w-full lg:w-1/3 flex justify-center order-2">
+          <section class="relative w-full flex justify-center items-start">
+            <div class="relative w-[506px] h-[653px]">
+              <div class="absolute top-[102px] left-[26px] w-[443px] h-[529px]">
+                <div class="absolute top-0 left-0 w-[437px] h-[476px] bg-[#07578b] backdrop-blur-[109.5px] border-0 rounded-lg">
+                  <div class="relative w-full h-full">
+                    <img class="absolute top-[366px] left-[51px] w-[346px] h-40" alt="" src="{{ 'images/frame48095594.svg' | asset }}">
+                  </div>
+                </div>
+                {# Color variant buttons #}
+                <div class="absolute top-[503px] left-20 flex gap-[59px] items-center z-10">
+                  <button class="flex flex-col items-center gap-1">
+                    <img class="w-[58px] h-[26px]" alt="{{ trans('pages.home.color_dark') }}" src="{{ 'images/group1000010776-2.png' | asset }}">
+                    <span class="font-cormorant font-bold text-white text-[15px]">{{ trans('pages.home.color_dark') }}</span>
+                  </button>
+                  <button class="flex flex-col items-center gap-1">
+                    <img class="w-[58px] h-[26px]" alt="{{ trans('pages.home.color_brown') }}" src="{{ 'images/group1000010774-2.png' | asset }}">
+                    <span class="font-cormorant font-bold text-white text-[15px]">{{ trans('pages.home.color_brown') }}</span>
+                  </button>
+                  <button class="flex flex-col items-center gap-1">
+                    <img class="w-[58px] h-[26px]" alt="{{ trans('pages.home.color_beige') }}" src="{{ 'images/subtract-4.svg' | asset }}">
+                    <span class="font-cormorant font-bold text-white text-[15px]">{{ trans('pages.home.color_beige') }}</span>
+                  </button>
+                </div>
+              </div>
+              <img class="absolute top-0 left-0 w-[506px] h-[653px] z-[5]" alt="" src="{{ 'images/bananers-3d-brown-paper-coffee-bean-bag-transparent-background-e.png' | asset }}">
+              <img class="absolute top-52 left-[267px] w-[117px] h-[139px] z-10" alt="" src="{{ 'images/group1000010765.png' | asset }}">
+            </div>
+          </section>
+        </div>
+
+        {# RIGHT: Coffee cup + headline #}
+        <div class="w-full lg:w-1/3 flex flex-col items-center text-center order-3">
+          <div class="w-full max-w-[350px] h-auto flex items-center justify-center">
+            <img src="{{ 'images/bk1.png' | asset }}" alt="{{ trans('pages.home.hero_title') }}" class="w-full h-full object-contain">
+          </div>
+          <div class="mt-4 lg:mt-6 font-normal text-[24px] sm:text-[28px] md:text-[32px] leading-[32px]">
+            <span class="font-bold text-[#231f20] font-quicksand">{{ trans('pages.home.hero_title') }}<br>{{ trans('pages.home.hero_title_2') }} </span>
+            <span class="font-bold text-white bg-[#004876] px-2 py-1 rounded-md font-quicksand">{{ trans('pages.home.hero_pro') }}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============================================================ #}
+{# SCROLLING MARQUEE                                             #}
+{# ============================================================ #}
+<div class="relative w-full overflow-hidden py-8 bg-white">
+  <div class="flex items-center gap-12 animate-scroll whitespace-nowrap">
+    {# We repeat 22 items twice so the loop is seamless #}
+    {% for i in 1..2 %}
+      <span class="font-cormorant font-bold text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group.png' | asset }}">
+      <span class="font-quicksand font-normal text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group-1.png' | asset }}">
+      <span class="font-quicksand font-normal text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group-2.png' | asset }}">
+      <span class="font-quicksand font-normal text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group-3.png' | asset }}">
+      <span class="font-quicksand font-normal text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group-4.png' | asset }}">
+      <span class="font-quicksand font-normal text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group-5.png' | asset }}">
+      <span class="font-cormorant font-bold text-[#6f4336] text-2xl">Coffee</span>
+      <img class="w-[28.61px] h-[28.61px]" alt="" src="{{ 'images/group-6.png' | asset }}">
+    {% endfor %}
+  </div>
+</div>
+
+{# ============================================================ #}
+{# PRODUCTS SECTION — "Special to Try"                          #}
+{# Dynamic products from Salla store                            #}
+{# ============================================================ #}
+<section class="w-full py-0 relative" id="our-products">
+  <div class="w-full max-w-[1238px] mx-auto relative px-4">
+
+    {# Section Header #}
+    <div class="flex flex-col items-center gap-2.5 mb-[25px]">
+      <h3 class="font-quicksand font-normal text-[#3b2f2f] text-xl text-center">{{ trans('pages.home.products_subtitle') }}</h3>
+      <h2 class="font-quicksand font-bold text-[#3b2f2f] text-[32px] text-center">{{ trans('pages.home.products_title') }}</h2>
+    </div>
+
+    {# Category Filter Buttons — dynamic from Salla categories #}
+    <div class="flex flex-col items-center gap-2.5 mb-[43px]">
+      <nav class="relative flex items-center gap-[55px] flex-wrap justify-center">
+        <button
+          class="relative font-quicksand text-xl pb-1 transition-all duration-300 font-semibold text-[#004876] category-active"
+          data-category="all"
+          onclick="filterByCategory(this, 'all')"
+        >
+          {{ trans('pages.home.all_categories') }}
+        </button>
+        {% for category in store.categories %}
+          <button
+            class="relative font-quicksand text-xl pb-1 transition-all duration-300 font-normal text-[#3b2f2f] hover:text-[#004876]"
+            data-category="{{ category.id }}"
+            onclick="filterByCategory(this, '{{ category.id }}')"
+          >
+            {{ category.name }}
+          </button>
+        {% endfor %}
+      </nav>
+    </div>
+
+    {# Products Grid — dynamic from Salla store #}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mb-[80px] mt-[80px]" id="products-grid">
+      {% for product in products | default([]) %}
+        {% include 'components/home/product-card' with { product: product } %}
+      {% else %}
+        <p class="col-span-4 text-center text-gray-400 font-quicksand py-12">{{ trans('pages.home.no_products') }}</p>
+      {% endfor %}
+    </div>
+
+    {# View All Products link #}
+    <div class="flex justify-center mb-12">
+      <a
+        href="{{ store.url }}products"
+        class="flex items-center gap-2 px-8 py-3 rounded-full border-2 border-[#6f4336] text-[#6f4336] hover:bg-[#6f4336] hover:text-white transition-colors font-quicksand font-medium"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+        {{ trans('pages.home.view_all') }}
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{# ============================================================ #}
+{# SUBSCRIBE SECTION — "Stay In Touch"                          #}
+{# ============================================================ #}
+<section class="w-full relative px-4 mb-12">
+  <div class="bg-[#004876] rounded-[40px] px-8 py-[72px] flex flex-col items-center gap-16">
+    <h2 class="font-quicksand font-bold text-white text-[50px] text-center tracking-[2.50px] leading-[69px] max-w-[865px]">
+      {{ trans('pages.home.subscribe_title') }}
+    </h2>
+    {# Salla handles newsletter subscriptions via its own component #}
+    <salla-newsletter class="flex w-full max-w-[500px]"></salla-newsletter>
+  </div>
+</section>
+
+{# ============================================================ #}
+{# WELCOME / FEATURES SECTION                                   #}
+{# ============================================================ #}
+<section class="w-full flex flex-col lg:flex-row items-center justify-start gap-8 lg:gap-12 py-8 px-4 lg:px-12">
+  <div class="w-full lg:w-[45%] flex justify-start">
+    <img src="{{ 'images/r1.jpg' | asset }}" alt="{{ store.name }}" class="w-full max-w-[500px] h-auto object-cover rounded-2xl">
+  </div>
+  <div class="w-full lg:w-[50%] flex flex-col gap-8 lg:pl-4">
+    <header class="flex flex-col items-center lg:items-start gap-2 text-center lg:text-left">
+      <h2 class="font-quicksand font-bold text-[#3b2f2f] text-[40px] leading-normal">{{ trans('pages.home.welcome_title') }}</h2>
+      <p class="font-quicksand font-normal text-[#3b2f2f] text-2xl leading-normal">{{ trans('pages.home.welcome_subtitle') }}</p>
+    </header>
+    <div class="grid grid-cols-2 gap-6 max-w-[660px] lg:max-w-none mx-auto lg:mx-0">
+      {% set features = [
+        { icon: 'link-h2-custom-icon-6-png.png', key: 'quality' },
+        { icon: 'link-h2-custom-icon-8-png.png', key: 'easy' },
+        { icon: 'link-h2-custom-icon-7-png.png', key: 'taste' },
+        { icon: 'link-h2-custom-icon-5-png-2.png', key: 'quick' }
+      ] %}
+      {% for feature in features %}
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-[81px] h-[81px] bg-[#6f4336] rounded-[40.53px] flex items-center justify-center">
+            <div class="w-[46px] h-[46px] bg-cover bg-center bg-no-repeat"
+                 style="background-image: url('{{ ('images/' ~ feature.icon) | asset }}');"></div>
+          </div>
+          <div class="flex flex-col gap-2 flex-1">
+            <h3 class="font-quicksand font-bold text-[#004876] text-base leading-normal capitalize">
+              {{ trans('pages.home.feature_' ~ feature.key) }}
+            </h3>
+            <p class="font-quicksand font-normal text-[#292625] text-xs leading-5">
+              {{ trans('pages.home.feature_' ~ feature.key ~ '_desc') }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ============================================================ #}
+{# BESTSELLERS SECTION                                           #}
+{# ============================================================ #}
+<section class="w-full py-12 px-4 overflow-hidden">
+  <div class="container mx-auto flex flex-col lg:flex-row items-start gap-12">
+    <div class="flex flex-col lg:flex-row items-start gap-6 lg:gap-8">
+      <div class="flex flex-col justify-start gap-6 overflow-hidden w-fit">
+        <img alt="" src="{{ 'images/group1000010755.png' | asset }}" class="object-contain w-[280px] lg:w-[350px]">
+      </div>
+      <div class="flex flex-col gap-6 mt-20">
+        <h2 class="text-3xl font-bold text-[#3b2f2f] tracking-wide font-quicksand">{{ trans('pages.home.bestsellers') }}</h2>
+        <a
+          href="{{ store.url }}products"
+          class="flex items-center gap-2 w-max px-6 py-3 rounded-full border border-[#6f4336] hover:bg-[#6f4336] hover:text-white text-[#6f4336] transition-colors font-quicksand font-normal text-base"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+          {{ trans('pages.home.check_menu') }}
+        </a>
+      </div>
+    </div>
+    {# Horizontal scroll of bestseller product cards #}
+    <div class="flex-1 overflow-x-auto">
+      <div class="flex gap-4 items-start min-w-max">
+        {% for product in bestsellers | default(products | default([]) | slice(0, 4)) %}
+          <a href="{{ product.url }}" class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl block">
+            <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl"
+                 style="background-image: url('{{ product.image.url }}')">
+              <div class="flex justify-end p-3">
+                <salla-favorite product-id="{{ product.id }}"></salla-favorite>
+              </div>
+              <div class="bg-white/30 backdrop-blur-md px-4 py-5 text-center space-y-2">
+                <h3 class="font-bold text-[#3b2f2f] text-xl mb-1 font-quicksand">{{ product.name }}</h3>
+                <p class="text-[#e1b068] font-bold text-base font-quicksand">{{ product.price }}</p>
+                <salla-add-product-button product-id="{{ product.id }}"></salla-add-product-button>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ============================================================ #}
+{# BLOG SECTION — Featured Blogs from Salla                     #}
+{# ============================================================ #}
+<section class="w-full py-20 px-[6.04%] mb-[45px]" id="blogs">
+  <h2 class="font-bold text-[#3b2f2f] text-[32px] text-center mb-[84px] font-quicksand">{{ trans('pages.home.blogs_title') }}</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-[1200px] mx-auto">
+    {% for blog in blogs | default([]) %}
+      <a href="{{ blog.url }}" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
+        <div class="aspect-video overflow-hidden">
+          <img src="{{ blog.image }}" alt="{{ blog.title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy">
+        </div>
+        <div class="p-6 flex flex-col flex-grow">
+          <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors">{{ blog.title }}</h3>
+          <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand">{{ blog.description | slice(0, 100) }}...</p>
+          <div class="flex justify-between items-center mt-auto">
+            <span class="text-[#004876] font-medium text-sm font-quicksand">{{ trans('pages.home.read_more') }} →</span>
+            <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand">{{ trans('pages.home.featured') }}</span>
+          </div>
+        </div>
+      </a>
+    {% else %}
+      <p class="col-span-3 text-center text-gray-400 font-quicksand">{{ trans('pages.home.no_blogs') }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // ===== Intro slide-up (mirrors App.tsx) =====
+  setTimeout(() => {
+    document.getElementById('main-content').classList.add('slide-up');
+  }, 4700);
+
+  // ===== Menu open/close =====
+  document.getElementById('menu-open-btn')?.addEventListener('click', () => {
+    const overlay = document.getElementById('menu-overlay');
+    overlay.classList.toggle('hidden');
+    overlay.classList.toggle('flex');
+  });
+
+  function closeMenu() {
+    const overlay = document.getElementById('menu-overlay');
+    overlay.classList.add('hidden');
+    overlay.classList.remove('flex');
+  }
+
+  document.getElementById('menu-close-btn')?.addEventListener('click', closeMenu);
+
+  // ===== Category filter =====
+  function filterByCategory(btn, categoryId) {
+    // Reset all buttons
+    document.querySelectorAll('[data-category]').forEach(b => {
+      b.className = 'relative font-quicksand text-xl pb-1 transition-all duration-300 font-normal text-[#3b2f2f] hover:text-[#004876]';
+    });
+    // Highlight active
+    btn.className = 'relative font-quicksand text-xl pb-1 transition-all duration-300 font-semibold text-[#004876] category-active';
+
+    // Filter grid cards (show/hide by data-category attribute on the card)
+    const grid = document.getElementById('products-grid');
+    grid.querySelectorAll('[data-product-category]').forEach(card => {
+      if (categoryId === 'all' || card.dataset.productCategory === categoryId) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+{% endblock %}

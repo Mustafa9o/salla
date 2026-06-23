@@ -2071,6 +2071,11 @@ input:where([type='file']):focus{
     background-color: rgba(243, 244, 246, 1);
     background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
 }
+.bg-gray-200{
+    --tw-bg-opacity: 1;
+    background-color: rgba(229, 231, 235, 1);
+    background-color: rgba(229, 231, 235, var(--tw-bg-opacity, 1));
+}
 .bg-gray-50{
     --tw-bg-opacity: 1;
     background-color: rgba(249, 250, 251, 1);

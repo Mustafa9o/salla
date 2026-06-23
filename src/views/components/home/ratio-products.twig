@@ -1,0 +1,68 @@
+{# ============================================================ #}
+{# PRODUCTS SECTION — components/home/ratio-products.twig       #}
+{# ============================================================ #}
+<section class="w-full py-0 relative" id="our-products">
+  <div class="w-full max-w-[1238px] mx-auto relative px-4">
+
+    {# Section Header #}
+    <div class="flex flex-col items-center gap-2.5 mb-[25px]">
+      <h3 class="font-quicksand font-normal text-[#3b2f2f] text-xl text-center">{{ component.subtitle|default(trans('pages.home.products_subtitle')) }}</h3>
+      <h2 class="font-quicksand font-bold text-[#3b2f2f] text-[32px] text-center">{{ component.title|default(trans('pages.home.products_title')) }}</h2>
+    </div>
+
+    {# Category Filter Buttons — dynamic from Salla categories #}
+    <div class="flex flex-col items-center gap-2.5 mb-[43px]">
+      <nav class="relative flex items-center gap-[55px] flex-wrap justify-center">
+        <button
+          class="relative font-quicksand text-xl pb-1 transition-all duration-300 font-semibold text-[#004876] category-active"
+          data-category="all"
+          onclick="filterByCategory(this, 'all')"
+        >
+          {{ trans('pages.home.all_categories') }}
+        </button>
+        {% for category in store.categories %}
+          <button
+            class="relative font-quicksand text-xl pb-1 transition-all duration-300 font-normal text-[#3b2f2f] hover:text-[#004876]"
+            data-category="{{ category.id }}"
+            onclick="filterByCategory(this, '{{ category.id }}')"
+          >
+            {{ category.name }}
+          </button>
+        {% endfor %}
+      </nav>
+    </div>
+
+    {# Products Grid — dynamic from Salla store #}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mb-[80px] mt-[80px]" id="products-grid">
+      {% if products is defined and products|length > 0 %}
+        {% for product in products %}
+          {% include 'components/home/product-card' with { product: product } %}
+        {% endfor %}
+      {% else %}
+        {# Fallback Mock Data for Editor #}
+        {% for i in 1..4 %}
+        <div class="border-0 shadow-none bg-transparent cursor-pointer">
+          <div class="relative w-full h-[300px] mb-3.5 rounded-xl overflow-hidden">
+            <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" alt="Coffee" src="{{ 'images/r1.jpg' | asset }}">
+          </div>
+          <h3 class="font-quicksand font-medium text-[#3b2f2f] text-[22px] text-center mb-2">Premium Roast</h3>
+          <p class="font-quicksand font-normal text-[#8b8ba5] text-base text-center mb-3">Ratio Coffee</p>
+          <p class="font-quicksand font-semibold text-[#6f4336] text-lg text-center mb-3">60 SAR</p>
+        </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    {# View All Products link #}
+    <div class="flex justify-center mb-12">
+      <a
+        href="{{ store.url }}products"
+        class="flex items-center gap-2 px-8 py-3 rounded-full border-2 border-[#6f4336] text-[#6f4336] hover:bg-[#6f4336] hover:text-white transition-colors font-quicksand font-medium"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+        {{ trans('pages.home.view_all') }}
+      </a>
+    </div>
+
+  </div>
+</section>

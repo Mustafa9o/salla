@@ -1,0 +1,38 @@
+{# ============================================================ #}
+{# WELCOME / FEATURES SECTION — components/home/ratio-features.twig #}
+{# ============================================================ #}
+<section class="w-full flex flex-col lg:flex-row items-center justify-start gap-8 lg:gap-12 py-8 px-4 lg:px-12">
+  <div class="w-full lg:w-[45%] flex justify-start">
+    <img src="{{ component.image|default('images/r1.jpg' | asset) }}" alt="{{ store.name }}" class="w-full max-w-[500px] h-auto object-cover rounded-2xl">
+  </div>
+  <div class="w-full lg:w-[50%] flex flex-col gap-8 lg:pl-4">
+    <header class="flex flex-col items-center lg:items-start gap-2 text-center lg:text-left">
+      <h2 class="font-quicksand font-bold text-[#3b2f2f] text-[40px] leading-normal">{{ component.title|default(trans('pages.home.welcome_title')) }}</h2>
+      <p class="font-quicksand font-normal text-[#3b2f2f] text-2xl leading-normal">{{ component.subtitle|default(trans('pages.home.welcome_subtitle')) }}</p>
+    </header>
+    <div class="grid grid-cols-2 gap-6 max-w-[660px] lg:max-w-none mx-auto lg:mx-0">
+      {% set features = [
+        { icon: 'link-h2-custom-icon-6-png.png', key: 'quality' },
+        { icon: 'link-h2-custom-icon-8-png.png', key: 'easy' },
+        { icon: 'link-h2-custom-icon-7-png.png', key: 'taste' },
+        { icon: 'link-h2-custom-icon-5-png-2.png', key: 'quick' }
+      ] %}
+      {% for feature in features %}
+        <div class="flex items-center gap-3">
+          <div class="flex-shrink-0 w-[81px] h-[81px] bg-[#6f4336] rounded-[40.53px] flex items-center justify-center">
+            <div class="w-[46px] h-[46px] bg-cover bg-center bg-no-repeat"
+                 style="background-image: url('{{ ('images/' ~ feature.icon) | asset }}');"></div>
+          </div>
+          <div class="flex flex-col gap-2 flex-1">
+            <h3 class="font-quicksand font-bold text-[#004876] text-base leading-normal capitalize">
+              {{ trans('pages.home.feature_' ~ feature.key) }}
+            </h3>
+            <p class="font-quicksand font-normal text-[#292625] text-xs leading-5">
+              {{ trans('pages.home.feature_' ~ feature.key ~ '_desc') }}
+            </p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

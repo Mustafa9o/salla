@@ -1,0 +1,12 @@
+{# ============================================================ #}
+{# SUBSCRIBE SECTION — components/home/ratio-subscribe.twig     #}
+{# ============================================================ #}
+<section class="w-full relative px-4 mb-12">
+  <div class="bg-[#004876] rounded-[40px] px-8 py-[72px] flex flex-col items-center gap-16">
+    <h2 class="font-quicksand font-bold text-white text-[50px] text-center tracking-[2.50px] leading-[69px] max-w-[865px]">
+      {{ component.title|default(trans('pages.home.subscribe_title')) }}
+    </h2>
+    {# Salla handles newsletter subscriptions via its own component #}
+    <salla-newsletter class="flex w-full max-w-[500px]"></salla-newsletter>
+  </div>
+</section>

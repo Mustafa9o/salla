@@ -1,0 +1,74 @@
+{# ============================================================ #}
+{# HERO SECTION — components/home/ratio-hero.twig               #}
+{# ============================================================ #}
+<section class="relative w-full bg-white overflow-hidden min-h-[90vh] sm:min-h-[95vh] lg:min-h-screen flex flex-col justify-between">
+  <div class="container mx-auto px-4 sm:px-6 md:px-10 mt-[90px] sm:mt-[120px] md:mt-[140px] lg:mt-[8vw] relative z-10 flex-1 flex items-center">
+    <div class="w-full">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12">
+
+        {# LEFT: Hero product image + CTA #}
+        <div class="relative flex flex-col items-center justify-center w-full lg:w-1/3 order-1">
+          <div class="relative w-full max-w-[400px] h-auto flex items-center justify-center">
+            <img src="{{ component.product_image|default('images/r2.jpg' | asset) }}" alt="{{ store.name }}" class="w-full h-full object-contain">
+          </div>
+          <div class="mt-4 text-center px-4 w-full lg:absolute lg:bottom-4 xl:bottom-8 lg:left-1/2 lg:-translate-x-1/2">
+            <p class="font-normal text-[#292625] text-base sm:text-lg mb-4 font-quicksand">
+              {{ component.subtitle|default(trans('pages.home.hero_subtitle')) }}
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
+              <a href="{{ store.url }}products" class="flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-2xl border border-[#6f4336] bg-transparent hover:bg-[#6f4336]/10 transition-colors">
+                <span class="font-medium text-[#6f4336] text-sm sm:text-base font-quicksand">{{ trans('pages.home.shop_cta') }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#6f4336]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 7l-10 10M7 7h10v10"/></svg>
+              </a>
+              <img class="w-[46px] h-[46px]" alt="" src="{{ 'images/group1000010764.png' | asset }}">
+            </div>
+          </div>
+        </div>
+
+        {# MIDDLE: Discount / Feature Card #}
+        <div class="w-full lg:w-1/3 flex justify-center order-2">
+          <section class="relative w-full flex justify-center items-start">
+            <div class="relative w-[506px] h-[653px]">
+              <div class="absolute top-[102px] left-[26px] w-[443px] h-[529px]">
+                <div class="absolute top-0 left-0 w-[437px] h-[476px] bg-[#07578b] backdrop-blur-[109.5px] border-0 rounded-lg">
+                  <div class="relative w-full h-full">
+                    <img class="absolute top-[366px] left-[51px] w-[346px] h-40" alt="" src="{{ 'images/frame48095594.svg' | asset }}">
+                  </div>
+                </div>
+                {# Color variant buttons #}
+                <div class="absolute top-[503px] left-20 flex gap-[59px] items-center z-10">
+                  <button class="flex flex-col items-center gap-1">
+                    <img class="w-[58px] h-[26px]" alt="Dark" src="{{ 'images/group1000010776-2.png' | asset }}">
+                    <span class="font-cormorant font-bold text-white text-[15px]">{{ trans('pages.home.color_dark') }}</span>
+                  </button>
+                  <button class="flex flex-col items-center gap-1">
+                    <img class="w-[58px] h-[26px]" alt="Brown" src="{{ 'images/group1000010774-2.png' | asset }}">
+                    <span class="font-cormorant font-bold text-white text-[15px]">{{ trans('pages.home.color_brown') }}</span>
+                  </button>
+                  <button class="flex flex-col items-center gap-1">
+                    <img class="w-[58px] h-[26px]" alt="Beige" src="{{ 'images/subtract-4.svg' | asset }}">
+                    <span class="font-cormorant font-bold text-white text-[15px]">{{ trans('pages.home.color_beige') }}</span>
+                  </button>
+                </div>
+              </div>
+              <img class="absolute top-0 left-0 w-[506px] h-[653px] z-[5]" alt="" src="{{ 'images/bananers-3d-brown-paper-coffee-bean-bag-transparent-background-e.png' | asset }}">
+              <img class="absolute top-52 left-[267px] w-[117px] h-[139px] z-10" alt="" src="{{ 'images/group1000010765.png' | asset }}">
+            </div>
+          </section>
+        </div>
+
+        {# RIGHT: Coffee cup + headline #}
+        <div class="w-full lg:w-1/3 flex flex-col items-center text-center order-3">
+          <div class="w-full max-w-[350px] h-auto flex items-center justify-center">
+            <img src="{{ component.title_image|default('images/bk1.png' | asset) }}" alt="Hero Title" class="w-full h-full object-contain">
+          </div>
+          <div class="mt-4 lg:mt-6 font-normal text-[24px] sm:text-[28px] md:text-[32px] leading-[32px]">
+            <span class="font-bold text-[#231f20] font-quicksand">{{ component.title|default(trans('pages.home.hero_title') ~ '<br>' ~ trans('pages.home.hero_title_2'))|raw }}</span>
+            <span class="font-bold text-white bg-[#004876] px-2 py-1 rounded-md font-quicksand">PRO</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
