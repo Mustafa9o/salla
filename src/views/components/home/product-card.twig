@@ -18,10 +18,9 @@
         >
 
         {# Discount Badge — shows if sale price exists #}
-        {% if product.sale_price and product.sale_price < product.regular_price %}
-          {% set discount_pct = (((product.regular_price - product.sale_price) / product.regular_price) * 100) | round %}
+        {% if product.has_special_price %}
           <span class="absolute top-[30px] left-1/2 -translate-x-1/2 bg-[#f9edbd] text-[#3b2f2f] px-2 py-1 text-xs rounded font-quicksand font-semibold">
-            -{{ discount_pct }}%
+            {{ trans('pages.products.sale') }}
           </span>
         {% endif %}
       </div>

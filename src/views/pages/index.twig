@@ -157,7 +157,7 @@
 
     {# Products Grid — dynamic from Salla store #}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mb-[80px] mt-[80px]" id="products-grid">
-      {% for product in products %}
+      {% for product in products | default([]) %}
         {% include 'components/home/product-card' with { product: product } %}
       {% else %}
         <p class="col-span-4 text-center text-gray-400 font-quicksand py-12">{{ trans('pages.home.no_products') }}</p>
@@ -253,7 +253,7 @@
     {# Horizontal scroll of bestseller product cards #}
     <div class="flex-1 overflow-x-auto">
       <div class="flex gap-4 items-start min-w-max">
-        {% for product in bestsellers | default(products | slice(0, 4)) %}
+        {% for product in bestsellers | default(products | default([]) | slice(0, 4)) %}
           <a href="{{ product.url }}" class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl block">
             <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl"
                  style="background-image: url('{{ product.image.url }}')">
