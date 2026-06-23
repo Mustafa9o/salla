@@ -1133,7 +1133,7 @@
             ]
         },
         {
-            "key": "ratio-hero-123",
+            "key": "bcf3b8ee-ca93-4d68-b403-cde80f6dad61",
             "title": {
                 "en": "Ratio Hero",
                 "ar": "بانر رئيسي (Ratio)"
@@ -1171,7 +1171,7 @@
             ]
         },
         {
-            "key": "ratio-marquee-123",
+            "key": "cbeeaa71-b8fb-437c-8fd3-e37c9874c672",
             "title": {
                 "en": "Ratio Marquee",
                 "ar": "شريط متحرك (Ratio)"
@@ -1182,7 +1182,7 @@
             "fields": []
         },
         {
-            "key": "ratio-products-123",
+            "key": "d0213cfd-4f54-49be-bb3c-f4fa0cfde554",
             "title": {
                 "en": "Ratio Products",
                 "ar": "منتجات (Ratio)"
@@ -1209,7 +1209,7 @@
             ]
         },
         {
-            "key": "ratio-features-123",
+            "key": "766f6c33-fa7f-49c8-aa78-760b201372b3",
             "title": {
                 "en": "Ratio Features",
                 "ar": "مزايا (Ratio)"
@@ -1241,7 +1241,7 @@
             ]
         },
         {
-            "key": "ratio-subscribe-123",
+            "key": "1b8aac6c-6289-44d9-9a0f-f6b222a556cd",
             "title": {
                 "en": "Ratio Subscribe",
                 "ar": "نشرة بريدية (Ratio)"
@@ -1260,7 +1260,7 @@
             ]
         },
         {
-            "key": "ratio-bestsellers-123",
+            "key": "00991689-c9b6-4576-a90d-d848b506509b",
             "title": {
                 "en": "Ratio Bestsellers",
                 "ar": "الأكثر مبيعاً (Ratio)"
@@ -1286,7 +1286,7 @@
             ]
         },
         {
-            "key": "ratio-blogs-123",
+            "key": "01f37252-8dd4-43c9-a723-84daa07fc43a",
             "title": {
                 "en": "Ratio Blogs",
                 "ar": "المدونة (Ratio)"
