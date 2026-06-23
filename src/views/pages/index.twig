@@ -157,11 +157,23 @@
 
     {# Products Grid — dynamic from Salla store #}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[30px] mb-[80px] mt-[80px]" id="products-grid">
-      {% for product in products | default([]) %}
-        {% include 'components/home/product-card' with { product: product } %}
+      {% if products is defined %}
+        {% for product in products %}
+          {% include 'components/home/product-card' with { product: product } %}
+        {% else %}
+          <p class="col-span-4 text-center text-gray-400 font-quicksand py-12">{{ trans('pages.home.no_products') }}</p>
+        {% endfor %}
       {% else %}
-        <p class="col-span-4 text-center text-gray-400 font-quicksand py-12">{{ trans('pages.home.no_products') }}</p>
-      {% endfor %}
+        {# Fallback Mock Data #}
+        <div class="border-0 shadow-none bg-transparent cursor-pointer">
+          <div class="relative w-full h-[300px] mb-3.5">
+            <img class="w-full h-full object-cover" alt="Coffee" src="{{ 'images/r1.jpg' | asset }}">
+          </div>
+          <h3 class="font-quicksand font-medium text-[#3b2f2f] text-[22px] text-center mb-2">Premium Roast</h3>
+          <p class="font-quicksand font-normal text-[#8b8ba5] text-base text-center mb-3">Ratio Coffee</p>
+          <p class="font-quicksand font-semibold text-[#6f4336] text-lg text-center mb-3">60 SAR</p>
+        </div>
+      {% endif %}
     </div>
 
     {# View All Products link #}
@@ -253,21 +265,34 @@
     {# Horizontal scroll of bestseller product cards #}
     <div class="flex-1 overflow-x-auto">
       <div class="flex gap-4 items-start min-w-max">
-        {% for product in bestsellers | default(products | default([]) | slice(0, 4)) %}
-          <a href="{{ product.url }}" class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl block">
-            <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl"
-                 style="background-image: url('{{ product.image.url }}')">
-              <div class="flex justify-end p-3">
-                <salla-favorite product-id="{{ product.id }}"></salla-favorite>
+        {% if bestsellers is defined %}
+          {% for product in bestsellers %}
+            <a href="{{ product.url }}" class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl block">
+              <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl"
+                   style="background-image: url('{{ product.image.url }}')">
+                <div class="flex justify-end p-3">
+                  <salla-favorite product-id="{{ product.id }}"></salla-favorite>
+                </div>
+                <div class="bg-white/30 backdrop-blur-md px-4 py-5 text-center space-y-2">
+                  <h3 class="font-bold text-[#3b2f2f] text-xl mb-1 font-quicksand">{{ product.name }}</h3>
+                  <p class="text-[#e1b068] font-bold text-base font-quicksand">{{ product.price }}</p>
+                  <salla-add-product-button product-id="{{ product.id }}"></salla-add-product-button>
+                </div>
               </div>
-              <div class="bg-white/30 backdrop-blur-md px-4 py-5 text-center space-y-2">
-                <h3 class="font-bold text-[#3b2f2f] text-xl mb-1 font-quicksand">{{ product.name }}</h3>
-                <p class="text-[#e1b068] font-bold text-base font-quicksand">{{ product.price }}</p>
-                <salla-add-product-button product-id="{{ product.id }}"></salla-add-product-button>
+            </a>
+          {% endfor %}
+        {% else %}
+          {# Mock Product #}
+          <a href="#" class="min-w-[275px] max-w-[275px] h-[392px] overflow-hidden rounded-xl block">
+            <div class="w-full h-full bg-cover bg-center flex flex-col justify-between rounded-xl"
+                 style="background-image: url('{{ 'images/r2.jpg' | asset }}')">
+              <div class="bg-white/30 backdrop-blur-md px-4 py-5 text-center space-y-2 mt-auto">
+                <h3 class="font-bold text-[#3b2f2f] text-xl mb-1 font-quicksand">Ethiopian Roast</h3>
+                <p class="text-[#e1b068] font-bold text-base font-quicksand">45 SAR</p>
               </div>
             </div>
           </a>
-        {% endfor %}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -279,23 +304,39 @@
 <section class="w-full py-20 px-[6.04%] mb-[45px]" id="blogs">
   <h2 class="font-bold text-[#3b2f2f] text-[32px] text-center mb-[84px] font-quicksand">{{ trans('pages.home.blogs_title') }}</h2>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center max-w-[1200px] mx-auto">
-    {% for blog in blogs | default([]) %}
-      <a href="{{ blog.url }}" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
-        <div class="aspect-video overflow-hidden">
-          <img src="{{ blog.image }}" alt="{{ blog.title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy">
+    {% if blogs is defined %}
+      {% for blog in blogs %}
+        <a href="{{ blog.url }}" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ blog.image }}" alt="{{ blog.title }}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy">
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors">{{ blog.title }}</h3>
+            <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand">{{ blog.description | default('') | slice(0, 100) }}...</p>
+            <div class="flex justify-between items-center mt-auto">
+              <span class="text-[#004876] font-medium text-sm font-quicksand">{{ trans('pages.home.read_more') }} →</span>
+              <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand">{{ trans('pages.home.featured') }}</span>
+            </div>
+          </div>
+        </a>
+      {% else %}
+        <p class="col-span-3 text-center text-gray-400 font-quicksand">{{ trans('pages.home.no_blogs') }}</p>
+      {% endfor %}
+    {% else %}
+      {# Mock Blog #}
+      <a href="#" class="group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:scale-105 w-full max-w-sm flex flex-col">
+        <div class="aspect-video overflow-hidden bg-gray-200">
         </div>
         <div class="p-6 flex flex-col flex-grow">
-          <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors">{{ blog.title }}</h3>
-          <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand">{{ blog.description | slice(0, 100) }}...</p>
+          <h3 class="font-bold text-[#3b2f2f] text-xl mb-3 font-quicksand group-hover:text-[#6f4336] transition-colors">The Perfect Brew</h3>
+          <p class="text-gray-600 text-sm mb-4 flex-grow font-quicksand">Discover the secrets to brewing the perfect cup of coffee at home with our simple guide...</p>
           <div class="flex justify-between items-center mt-auto">
-            <span class="text-[#004876] font-medium text-sm font-quicksand">{{ trans('pages.home.read_more') }} →</span>
-            <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand">{{ trans('pages.home.featured') }}</span>
+            <span class="text-[#004876] font-medium text-sm font-quicksand">Read More →</span>
+            <span class="px-2 py-1 bg-[#6f4336] text-white text-xs rounded-full font-quicksand">Featured</span>
           </div>
         </div>
       </a>
-    {% else %}
-      <p class="col-span-3 text-center text-gray-400 font-quicksand">{{ trans('pages.home.no_blogs') }}</p>
-    {% endfor %}
+    {% endif %}
   </div>
 </section>
 
