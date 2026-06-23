@@ -44,8 +44,8 @@
 
       <!-- NAVBAR -->
       <div class="absolute top-0 left-0 w-full px-4 sm:px-6 md:px-10 py-4 sm:py-6 flex items-center justify-between z-20">
-        <a href="index.html">
-          <img src="{{ 'images/logo.png' | asset }}" alt="Ratio Coffee Logo" class="w-[80px] sm:w-[100px] md:w-[120px]">
+        <a href="{{ store.url }}">
+          <img src="{{ store.logo|cdn(175) }}" alt="Ratio Coffee Logo" class="w-[80px] sm:w-[100px] md:w-[120px]">
         </a>
         <div class="flex items-center gap-3 sm:gap-5">
           <!-- Language Toggle -->
@@ -387,7 +387,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
     <div class="absolute top-6 rtl:right-8 ltr:left-8">
-      <img src="{{ 'images/logo.png' | asset }}" alt="Logo" class="h-10">
+      <img src="{{ store.logo|cdn(175) }}" alt="Logo" class="h-10">
     </div>
     <nav class="flex flex-col items-center gap-8 text-[#004876]">
       <a href="index.html" class="text-3xl font-bold hover:text-[#6f4336] transition-colors font-quicksand" data-i18n="home"></a>
