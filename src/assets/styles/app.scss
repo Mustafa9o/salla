@@ -183,3 +183,4 @@ html[dir="ltr"] .cart-drawer { animation: slideInSide 0.3s ease-out; }
 .rtl\:right-\[23px\]:where([dir="rtl"], [dir="rtl"] *) { right: 23px !important; }
 .ltr\:left-\[23px\]:where([dir="ltr"], [dir="ltr"] *) { left: 23px !important; }
 
+@import 'theme.css';

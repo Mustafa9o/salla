@@ -82,6 +82,35 @@
     {# Google Fonts #}
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,600;0,700;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    {# Inject Tailwind CDN to instantly parse custom layout arbitrary values #}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              cormorant: ['"Cormorant Infant"', 'Helvetica', 'serif'],
+              quicksand: ['Quicksand', '"Cairo"', 'Helvetica', 'sans-serif'],
+            },
+            keyframes: {
+              scroll: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+              scrollrtl: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(50%)' } },
+              fadeOut: { to: { opacity: '0', visibility: 'hidden' } },
+              slideInSide: { from: { transform: 'translateX(100%)' }, to: { transform: 'translateX(0)' } },
+              slideInSideRtl: { from: { transform: 'translateX(-100%)' }, to: { transform: 'translateX(0)' } },
+            },
+            animation: {
+              'scroll': 'scroll 25s linear infinite',
+              'scroll-rtl': 'scrollrtl 25s linear infinite',
+              'slide-side': 'slideInSide 0.3s ease-out',
+              'slide-side-rtl': 'slideInSideRtl 0.3s ease-out',
+            }
+          }
+        }
+      }
+    </script>
+    
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
     <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
     <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>

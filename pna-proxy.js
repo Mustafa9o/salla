@@ -4,7 +4,7 @@
 const http = require('http');
 
 const PROXY_PORT = 8080;
-const TARGET_PORT = 8000;
+const TARGET_PORT = 8002;
 
 const PNA_HEADERS = {
   'Access-Control-Allow-Origin': '*',
