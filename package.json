@@ -1,6 +1,6 @@
 {
   "name": "theme-raed",
-  "version": "1.0.3",
+  "version": "1.0.40",
   "description": "Salla Theme",
   "license": "MIT",
   "repository": {
@@ -8,7 +8,6 @@
     "url": "git+https://github.com/SallaApp/theme-raed.git"
   },
   "scripts": {
-
     "test": "echo \"Error: no test specified\" && exit 1",
     "production": "webpack --mode production",
     "prod": "webpack --mode production",
