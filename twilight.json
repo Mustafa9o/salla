@@ -1304,6 +1304,15 @@
                     "value": "أحدث مقالاتنا"
                 }
             ]
+        },
+        {
+            "key": "product-component-001",
+            "title": {"en": "Product Page", "ar": "صفحة المنتج"},
+            "icon": "sicon-product",
+            "path": "product.main",
+            "type": "store.product",
+            "is_default": true,
+            "fields": []
         }
     ],
     "support_url": "https://salla.com/",
@@ -1311,5 +1320,5 @@
         "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
         "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
     },
-    "version": "1.0.42"
+    "version": "1.0.43"
 }
