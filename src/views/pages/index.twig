@@ -12,6 +12,11 @@
         {% for component in theme.components %}
             {% component component.path with component.fields %}
         {% endfor %}
+        <div style="padding: 150px 20px; text-align: center; background: #e0f2fe; margin-top: 100px;">
+            <h1 style="color: #004876; font-size: 24px; font-weight: bold; margin-bottom: 20px;">TEST CONTENT IS VISIBLE</h1>
+            <p style="color: #333; margin-bottom: 10px;">The global layout (Header and Footer) is working perfectly!</p>
+            <p style="color: #333; font-weight: bold;">To build your homepage, go to your Salla Theme Editor and click 'Add New Element' to add the Hero Section and other components to this page!</p>
+        </div>
     </div>
 {% endblock %}
 
@@ -57,3 +62,4 @@
   }
 </script>
 {% endblock %}
+
