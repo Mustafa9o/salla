@@ -23,9 +23,7 @@
 {% block scripts %}
 <script>
   // ===== Intro slide-up (mirrors App.tsx) =====
-  setTimeout(() => {
-    document.getElementById('main-content').classList.add('slide-up');
-  }, 4700);
+  // Removed setTimeout to prevent blank screens during editor load
 
   // ===== Menu open/close =====
   document.getElementById('menu-open-btn')?.addEventListener('click', () => {

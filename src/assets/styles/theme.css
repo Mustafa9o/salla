@@ -25,14 +25,13 @@
 .intro-gif { width: 300px; }
 
 .main-content {
-  opacity: 0;
-  transform: translateY(100vh);
-  transition: transform 2.2s ease-out, opacity 1.5s ease-out;
+  opacity: 1;
+  transform: none;
 }
 
 .main-content.slide-up {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
 /* ============================================================

@@ -57,14 +57,14 @@
             <p class="font-quicksand font-medium text-[#ffffff95] text-sm sm:text-base max-w-[180px]">
               {{ trans('blocks.footer.contact_question') }}
             </p>
-            {% if store.phone %}
-              <a href="tel:{{ store.phone }}" class="font-bold text-[#ffffff95] text-sm sm:text-base hover:text-white transition-colors font-quicksand">
-                {{ store.phone }}
+            {% if store.contacts.phone %}
+              <a href="tel:{{ store.contacts.phone }}" class="font-bold text-[#ffffff95] text-sm sm:text-base hover:text-white transition-colors font-quicksand">
+                {{ store.contacts.phone }}
               </a>
             {% endif %}
-            {% if store.email %}
-              <a href="mailto:{{ store.email }}" class="font-bold text-[#ffffff95] text-sm sm:text-base hover:text-white transition-colors break-all font-quicksand">
-                {{ store.email }}
+            {% if store.contacts.email %}
+              <a href="mailto:{{ store.contacts.email }}" class="font-bold text-[#ffffff95] text-sm sm:text-base hover:text-white transition-colors break-all font-quicksand">
+                {{ store.contacts.email }}
               </a>
             {% endif %}
           </div>
